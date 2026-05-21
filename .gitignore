@@ -1,0 +1,17 @@
+# Laravel & Composer
+/vendor
+/node_modules
+.env
+.phpunit.result.cache
+/storage/*.key
+
+# Laravel Logs
+/storage/logs/*
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+
+# Vercel & misc
+.vercel
+.idea
+.DS_Store
