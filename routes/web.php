@@ -24,9 +24,12 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middl
 Route::redirect('/', '/ikpa')->name('root');
 Route::get('/landing/video', [LandingMediaController::class, 'video'])->name('landing.video');
 Route::get('/ikpa', [IkpaController::class, 'index'])->name('ikpa.index');
+Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/ikpa/input', [IkpaController::class, 'input'])->name('ikpa.input');
+    Route::post('/ikpa/scores', [IkpaController::class, 'saveScores'])->name('ikpa.scores.save');
+    Route::get('/ikpa/masterdata', [IkpaController::class, 'masterdata'])->name('ikpa.masterdata');
     Route::post('/ikpa/units', [IkpaController::class, 'store'])->name('ikpa.units.store');
     Route::put('/ikpa/units/{ikpaUnit}', [IkpaController::class, 'update'])->name('ikpa.units.update');
     Route::delete('/ikpa/units/{ikpaUnit}', [IkpaController::class, 'destroy'])->name('ikpa.units.destroy');
@@ -43,8 +46,6 @@ Route::get('/loans/receipt/{batch}', [LoanController::class, 'receipt'])
     ->name('loans.receipt');
 
 Route::middleware('auth')->group(function () {
-    // Halaman dashboard
-    Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
     Route::get('/dashboard/chart/petugas-monthly', [HomeController::class, 'petugasMonthlyChart'])->name('dashboard.chart.petugas-monthly');
     Route::get('/profile', function () {
         return view('profile.show');
@@ -102,4 +103,4 @@ Route::middleware('auth')->group(function () {
 });
 
 // Jika kamu membutuhkan route dinamis untuk menangani URL lainnya
-Route::get('{any}', [HomeController::class, 'index'])->name('index');
+Route::get('{any}', [HomeController::class, 'index'])->middleware('auth')->name('index');

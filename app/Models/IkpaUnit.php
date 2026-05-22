@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class IkpaUnit extends Model
 {
@@ -29,6 +30,11 @@ class IkpaUnit extends Model
         'pengelolaan_up_tup' => 'Pengelolaan UP dan TUP',
         'capaian_output' => 'Capaian Output',
     ];
+
+    public function scores(): HasMany
+    {
+        return $this->hasMany(IkpaUnitScore::class);
+    }
 
     public function score(): int
     {

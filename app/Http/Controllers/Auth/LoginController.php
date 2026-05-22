@@ -27,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/dashboard';
+    protected $redirectTo = '/ikpa/input';
 
     /**
      * Use a single login field that accepts email or username.
@@ -98,7 +98,7 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, $user)
     {
-        return redirect()->intended($this->redirectPath())->with('success', 'Berhasil login!');
+        return redirect()->intended($this->redirectPath())->with('success', 'Berhasil login. Selamat datang di Input IKPA.');
     }
 
     /**
@@ -108,7 +108,7 @@ class LoginController extends Controller
     {
         $request->session()->regenerate();
 
-        return redirect()->intended($this->redirectPath())->with('success', 'Berhasil login!');
+        return redirect()->intended($this->redirectPath())->with('success', 'Berhasil login. Selamat datang di Input IKPA.');
     }
 
     /**
@@ -118,7 +118,7 @@ class LoginController extends Controller
     {
         throw ValidationException::withMessages([
             'login' => [trans('auth.failed')],
-        ])->redirectTo(route('login'));
+        ])->redirectTo(url()->previous())->errorBag('login');
     }
 
     /**

@@ -1,0 +1,138 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 760" role="img" aria-labelledby="title desc">
+  <title id="title">IKPA Analytics Illustration</title>
+  <desc id="desc">Dashboard analytics with chart bars and magnifying glass on a blue technology background.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#073b7a"/>
+      <stop offset=".52" stop-color="#06275a"/>
+      <stop offset="1" stop-color="#021432"/>
+    </linearGradient>
+    <linearGradient id="panel" x1=".12" y1=".07" x2=".91" y2=".9">
+      <stop offset="0" stop-color="#1d78d8"/>
+      <stop offset=".5" stop-color="#0d4da2"/>
+      <stop offset="1" stop-color="#06285f"/>
+    </linearGradient>
+    <linearGradient id="panelEdge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#77d7ff"/>
+      <stop offset="1" stop-color="#0b4fb1"/>
+    </linearGradient>
+    <linearGradient id="cyanBar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#bdf3ff"/>
+      <stop offset=".55" stop-color="#46bff8"/>
+      <stop offset="1" stop-color="#1277d8"/>
+    </linearGradient>
+    <linearGradient id="redBar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff6b51"/>
+      <stop offset="1" stop-color="#f51f2b"/>
+    </linearGradient>
+    <linearGradient id="yellowBar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffd95d"/>
+      <stop offset="1" stop-color="#f7a900"/>
+    </linearGradient>
+    <linearGradient id="glass" x1=".13" y1=".1" x2=".82" y2=".9">
+      <stop offset="0" stop-color="#eafcff" stop-opacity=".95"/>
+      <stop offset=".55" stop-color="#72cfff" stop-opacity=".46"/>
+      <stop offset="1" stop-color="#195ca8" stop-opacity=".25"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="18" stdDeviation="16" flood-color="#00122d" flood-opacity=".48"/>
+    </filter>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <pattern id="grid" width="72" height="72" patternUnits="userSpaceOnUse">
+      <path d="M72 0H0v72" fill="none" stroke="#2b78cb" stroke-width="1" opacity=".18"/>
+      <circle cx="0" cy="0" r="2.8" fill="#17a8ff" opacity=".35"/>
+    </pattern>
+  </defs>
+
+  <rect width="920" height="760" fill="url(#bg)"/>
+  <rect width="920" height="760" fill="url(#grid)"/>
+
+  <g opacity=".42" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M87 134 289 48l72 34 133-56 252 99" stroke="#26a9ff" stroke-width="5"/>
+    <path d="M88 134v92m201-178v87m72-53v98m133-154v119m252-20v116" stroke="#1d85df" stroke-width="2"/>
+    <path d="M94 430h155l70-56h193l82-70h184M132 610h188l52-44h172l76 54h148" stroke="#27a8ff" stroke-width="2"/>
+    <path d="M746 125 827 82v187M640 120v133M700 178v165" stroke="#168be8" stroke-width="4"/>
+    <circle cx="87" cy="134" r="8" fill="#22a9ff" stroke="none"/>
+    <circle cx="289" cy="48" r="6" fill="#22a9ff" stroke="none"/>
+    <circle cx="494" cy="26" r="5" fill="#22a9ff" stroke="none"/>
+    <circle cx="746" cy="125" r="7" fill="#22a9ff" stroke="none"/>
+  </g>
+
+  <g transform="translate(88 354)" filter="url(#shadow)">
+    <path d="M86 124 412 19c25-8 63-5 85 8l264 148c22 13 18 31-8 40L415 327c-26 9-66 6-88-8L77 163c-22-14-18-31 9-39Z" fill="#03112d" opacity=".55"/>
+    <path d="M55 92 411-22c25-8 63-5 85 8l283 158c22 13 18 31-8 40L399 307c-26 9-66 6-88-8L46 131c-22-14-18-31 9-39Z" fill="#0b2f72"/>
+    <path d="M78 94 416-13c18-6 46-3 62 6l258 145c16 9 13 22-6 28L384 281c-19 6-48 4-64-7L72 119c-16-10-13-20 6-25Z" fill="url(#panel)" stroke="#3dbbff" stroke-width="4"/>
+    <path d="M138 113 424 22c14-5 36-3 49 4l192 108c13 7 11 17-4 22l-293 96c-15 5-38 3-50-5L134 132c-12-8-10-15 4-19Z" fill="#0d58bf" opacity=".42"/>
+    <path d="M131 239 296 188m132 43 155-52m-80-69 121 67M215 78l297 174" stroke="#6bd7ff" stroke-width="2" opacity=".36"/>
+  </g>
+
+  <g transform="translate(246 143)" filter="url(#shadow)">
+    <path d="M0 44 250-31c22-7 53-4 70 8l142 86c16 10 15 26-1 35L182 248c-18 10-49 8-68-4L-8 163c-17-11-18-28-1-38L0 44Z" fill="#08265e"/>
+    <path d="M24 55 252-13c16-5 40-3 53 6l116 70c12 8 11 19-2 26L177 220c-14 8-37 6-52-3L20 146c-12-8-13-20-1-27l5-64Z" fill="#0d4aa4" stroke="#4bc8ff" stroke-width="4"/>
+    <path d="M75 54 270-4c10-3 26-2 35 4l67 39" stroke="#72ddff" stroke-width="4" opacity=".55"/>
+    <path d="M70 95 348 13" stroke="#e7fbff" stroke-width="15" stroke-linecap="round"/>
+    <path d="M68 137 305 66" stroke="#6ecfff" stroke-width="10" stroke-linecap="round" opacity=".7"/>
+    <circle cx="48" cy="83" r="10" fill="#e7fbff"/>
+    <path d="M46 83h34" stroke="#0c3c86" stroke-width="5" stroke-linecap="round"/>
+  </g>
+
+  <g transform="translate(164 230)" filter="url(#shadow)">
+    <path d="M0 208V72l36-12v136L0 208Z" fill="#07418e"/>
+    <path d="M36 196V60l24 14v137l-24-15Z" fill="#0b2d6c"/>
+    <path d="M0 72 36 60l24 14-36 13L0 72Z" fill="#8eeaff"/>
+    <path d="M24 87v109" stroke="url(#cyanBar)" stroke-width="28" stroke-linecap="round"/>
+
+    <path d="M70 215V107l36-12v108l-36 12Z" fill="#5b102d"/>
+    <path d="M106 203V95l24 14v109l-24-15Z" fill="#2f1235"/>
+    <path d="M70 107 106 95l24 14-36 13-24-15Z" fill="#ff9476"/>
+    <path d="M94 122v81" stroke="url(#redBar)" stroke-width="28" stroke-linecap="round"/>
+  </g>
+
+  <g transform="translate(365 254)" filter="url(#shadow)">
+    <path d="M0 180V88l36-12v92L0 180Z" fill="#0a408d"/>
+    <path d="M36 168V76l24 14v93l-24-15Z" fill="#0b2d6c"/>
+    <path d="M0 88 36 76l24 14-36 13L0 88Z" fill="#a5f0ff"/>
+    <path d="M24 103v65" stroke="url(#cyanBar)" stroke-width="28" stroke-linecap="round"/>
+
+    <path d="M68 154V35l38-12v119l-38 12Z" fill="#0a408d"/>
+    <path d="M106 142V23l25 15v120l-25-16Z" fill="#0b2d6c"/>
+    <path d="M68 35 106 23l25 15-38 13-25-16Z" fill="#bdf3ff"/>
+    <path d="M93 51v91" stroke="url(#cyanBar)" stroke-width="30" stroke-linecap="round"/>
+
+    <path d="M144 139V-7l40-13v146l-40 13Z" fill="#a56b05"/>
+    <path d="M184 126V-20l28 16v148l-28-18Z" fill="#6b4b08"/>
+    <path d="M144-7l40-13 28 16-40 14-28-17Z" fill="#ffe16d"/>
+    <path d="M171 10v116" stroke="url(#yellowBar)" stroke-width="32" stroke-linecap="round"/>
+  </g>
+
+  <g transform="translate(438 430)" filter="url(#shadow)">
+    <path d="M0 112c-42-24-44-65-5-92s105-29 148-5 45 65 6 93S43 137 0 112Z" fill="#06122d" opacity=".38"/>
+    <path d="M8 88c-38-22-40-58-4-82s96-26 134-4 40 58 4 82-96 26-134 4Z" fill="#e8fbff"/>
+    <path d="M26 76C-2 60-4 33 23 15s71-20 100-4 30 43 3 61-72 20-100 4Z" fill="url(#glass)" stroke="#66cfff" stroke-width="7"/>
+    <path d="M64 18c20-4 43-1 59 8 14 8 21 18 21 28" fill="none" stroke="#ffffff" stroke-width="7" stroke-linecap="round" opacity=".75"/>
+    <path d="M134 83 293 177" stroke="#e8fbff" stroke-width="36" stroke-linecap="round"/>
+    <path d="M134 83 293 177" stroke="#2e79c8" stroke-width="22" stroke-linecap="round"/>
+    <path d="M291 177 346 210" stroke="#e8fbff" stroke-width="42" stroke-linecap="round"/>
+    <path d="M291 177 346 210" stroke="#bfeeff" stroke-width="28" stroke-linecap="round"/>
+  </g>
+
+  <g transform="translate(298 435)" filter="url(#glow)">
+    <path d="M32 142c-30-18-31-48-2-67s77-20 108-2 31 48 2 67-78 20-108 2Z" fill="#fff7da" opacity=".72"/>
+    <path d="M39 128c-22-13-23-34-2-48s57-15 80-2 23 34 2 48-58 15-80 2Z" fill="#ffc83d"/>
+    <path d="M38 82 10 14l80 45" fill="#eafcff"/>
+    <path d="M39 82 74 110" stroke="#0f64d0" stroke-width="7" stroke-linecap="round"/>
+    <path d="M72 101c18 11 47 10 64-1" stroke="#fff1a8" stroke-width="9" stroke-linecap="round"/>
+  </g>
+
+  <g opacity=".45" fill="none" stroke="#22a8ff" stroke-linecap="round">
+    <path d="M672 202h88v158h-88zM704 238v84M734 212v119" stroke-width="5"/>
+    <path d="M790 158h36v244M827 158l24 14v244" stroke-width="5"/>
+    <path d="M714 491h126M650 600h154M612 640h204" stroke-width="3"/>
+  </g>
+</svg>

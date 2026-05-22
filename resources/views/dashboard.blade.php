@@ -1,1380 +1,869 @@
-@extends('layouts.app')
-
-@push('styles')
+<!doctype html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>Dashboard | SIMPATI PRIMA</title>
+    <link href="{{ asset('evanto/assets/icons/font-awesome/css/all.min.css') }}" rel="stylesheet">
 <style>
-    body[data-theme="light"] { background:#eef2ff; }
-    .dashboard-shell { display:flex; flex-direction:column; gap:0.95rem; min-width:0; }
-    .dashboard-shell .card { margin-bottom: 0; }
-    .dashboard-stats-row,
-    .dashboard-content-row,
-    .dashboard-main-col .row {
-        --bs-gutter-y: 0.85rem;
-    }
-    .dashboard-overview-row {
-        --bs-gutter-y: 0.85rem;
-        align-items: flex-start;
-    }
-    .dashboard-content-row {
-        margin-top: 0 !important;
-        align-items: flex-start;
-    }
-    .dashboard-stats-row {
-        margin-top: 0 !important;
-    }
-    .dashboard-welcome {
-        background:#ffffff;
-        border:1px solid rgba(148,163,184,0.14);
-        border-radius:22px;
-        padding:1rem 1.2rem;
-        box-shadow:0 10px 28px rgba(15,23,42,0.08);
-    }
-    .dashboard-welcome > [class*="col-"] {
-        min-width: 0;
-    }
-    .dashboard-welcome__title {
-        font-size:clamp(1.15rem,2.2vw,1.65rem);
-        font-weight:700;
-        color:#0f172a;
-        margin-bottom:0.2rem;
-    }
-    .dashboard-welcome__subtitle { color:#475569; font-size:0.94rem; margin-bottom:0.15rem; }
-    .dashboard-welcome__hint {
-        display:inline-flex;
-        align-items:center;
-        gap:0.4rem;
-        font-size:0.78rem;
-        color:#1d4ed8;
-        background:rgba(59,130,246,0.1);
-        border:1px solid rgba(59,130,246,0.22);
-        border-radius:999px;
-        padding:0.3rem 0.7rem;
-        margin-top:0.5rem;
-    }
-    .dashboard-clock {
-        background: #ffffff;
-        border: 1px solid rgba(148, 163, 184, 0.24);
-        border-radius: 16px;
-        padding: 0.9rem 1.05rem;
-        width: 100%;
-        max-width: 420px;
-        min-width: 0;
-        min-height: 96px;
+    body { margin: 0; background: #eef3f9; }
+    .content-body { min-height: 100vh; padding: 0; background: #eef3f9; }
+    .ikpa-flow {
+        --navy: #082a5c;
+        --navy-deep: #061d43;
+        --red: #f51f2b;
+        --yellow: #f7b900;
+        --green: #11a94f;
+        --line: #dfe7f0;
+        min-height: 100vh;
+        color: #08173d;
+        background: #f4f8fc;
+        overflow: hidden;
+        font-family: "SFUIText-Regular", Arial, sans-serif;
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+        padding-bottom: 46px;
     }
-    .dashboard-clock__label {
-        font-size: 0.82rem;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        color: #64748b;
-        margin-bottom: 0.3rem;
-        font-weight: 600;
-    }
-    .dashboard-clock__value {
-        font-size: clamp(0.9rem, 0.75vw + 0.55rem, 1.3rem);
-        font-weight: 700;
-        color: #0f172a;
-        line-height: 1.25;
-        white-space: nowrap;
-        font-variant-numeric: tabular-nums;
-    }
-    .dashboard-shell .avtivity-card {
-        border: 1px solid rgba(148,163,184,0.16);
-        border-radius: 20px;
-        box-shadow: 0 14px 34px rgba(15,23,42,0.08);
-        background: #ffffff;
-        overflow: hidden;
-        min-height: 190px;
-    }
-    .dashboard-shell .avtivity-card .card-body {
-        padding: 1.1rem 1.15rem 1rem;
-    }
-    .dashboard-shell .avtivity-card .media-body p {
-        color: #64748b;
-        font-size: 1rem;
-        margin-bottom: 0.2rem;
-    }
-    .dashboard-shell .avtivity-card .media-body .title {
-        font-size: 1.85rem;
-        font-weight: 700;
-        color: #0f172a;
-        line-height: 1.1;
-    }
-    .dashboard-shell .avtivity-card .progress {
-        margin-top: 0.85rem;
-        border-radius: 999px;
-        background: #e2e8f0;
+    .ikpa-flow * { box-sizing: border-box; }
+    .flow-hero {
+        position: relative;
+        min-height: 94px;
+        padding: 18px 34px 12px;
+        background: linear-gradient(100deg, #ffffff 0%, #f9fcff 64%, #083067 64%, #062653 100%);
+        border-bottom: 5px solid #e7edf4;
         overflow: hidden;
     }
-    .dashboard-shell .avtivity-card .progress-bar {
-        border-radius: 999px;
+    .flow-hero:before,
+    .flow-hero:after {
+        content: "";
+        position: absolute;
+        top: -40px;
+        right: 290px;
+        width: 104px;
+        height: 156px;
+        background: #1494df;
+        transform: skewX(-36deg);
+        border-radius: 0 0 18px 18px;
     }
-    .dashboard-shell .avtivity-card .activity-icon {
-        width: 54px;
-        height: 54px;
-        border-radius: 50%;
-        display: inline-flex;
+    .flow-hero:after {
+        right: 238px;
+        background: #061d43;
+    }
+    .flow-title {
+        margin: 0;
+        color: #09275a;
+        font-size: clamp(1.8rem, 3.1vw, 3rem);
+        font-weight: 900;
+        letter-spacing: 0;
+        line-height: .95;
+    }
+    .flow-hero-logo {
+        width: min(300px, 46vw);
+        min-height: 62px;
+        display: flex;
         align-items: center;
-        justify-content: center;
-        background: rgba(148,163,184,0.1);
     }
-    .dashboard-shell .avtivity-card .activity-icon svg {
-        width: 34px;
-        height: 34px;
+    .flow-hero-logo img {
+        width: 100%;
+        max-height: 78px;
+        object-fit: contain;
+        object-position: left center;
+        display: block;
     }
-    .dashboard-shell .avtivity-card .effect {
-        height: 5px;
-        opacity: 0.95;
+    .flow-subtitle {
+        margin: 8px 0 0;
+        color: #0d4387;
+        font-size: 1.08rem;
+        font-weight: 500;
     }
-    .dashboard-panel {
-        border: 1px solid rgba(148,163,184,0.16);
-        border-radius: 20px;
-        box-shadow: 0 14px 34px rgba(15,23,42,0.08);
-        background: #ffffff;
-        overflow: hidden;
+    .flow-subtitle:after {
+        content: "";
+        display: block;
+        width: 66px;
+        height: 4px;
+        margin-top: 8px;
+        border-radius: 999px;
+        background: #ffc400;
     }
-    .dashboard-side-col { display: block; }
-    .dashboard-side-col .dashboard-panel {
-        margin-top: 0 !important;
+    .flow-brand {
+        position: absolute;
+        top: 20px;
+        right: 42px;
+        display: grid;
+        grid-template-columns: 52px minmax(0, 1fr);
+        gap: 12px;
+        align-items: center;
+        color: #fff;
+        z-index: 1;
     }
-    .dashboard-panel .card-header {
-        padding: 1rem 1.15rem 0.55rem;
+    .flow-brand-mark {
+        width: 50px;
+        height: 50px;
+        border: 4px solid rgba(255,255,255,.8);
+        border-radius: 18px;
+        display: grid;
+        place-items: center;
+        background: rgba(255,255,255,.1);
+        font-size: 1.35rem;
     }
-    .dashboard-panel .card-body {
-        padding: 1rem 1.15rem 1.15rem;
-        line-height: 1.5;
+    .flow-brand strong {
+        display: block;
+        font-size: 1.34rem;
+        font-weight: 900;
+        line-height: 1;
     }
-    .dashboard-panel--status .card-header {
-        padding: 1.2rem 1.45rem 0.75rem;
+    .flow-brand span {
+        display: block;
+        margin-top: 6px;
+        max-width: 360px;
+        font-size: .92rem;
+        font-weight: 600;
+        line-height: 1.25;
     }
-    .dashboard-panel--status .card-body {
-        padding: 1.15rem 1.45rem 1.35rem;
-    }
-    .dashboard-panel--status {
-        min-height: 355px;
-    }
-    .dashboard-panel--profile {
-        min-height: 300px;
-    }
-    .dashboard-panel--members {
-        height: auto;
+    .flow-body {
+        display: grid;
+        grid-template-columns: 218px minmax(0, 1fr);
+        gap: 20px;
+        padding: 12px 28px 0;
+        flex: 1;
+        align-items: stretch;
         min-height: 0;
     }
-    .dashboard-panel--members .card-body {
-        overflow: hidden;
-    }
-    .dashboard-panel--menu {
-        min-height: 355px;
-    }
-    .dashboard-panel--status .row {
-        --bs-gutter-x: 1.15rem;
-        --bs-gutter-y: 1rem;
-    }
-    .dashboard-panel h4,
-    .dashboard-panel .card-title {
-        color: #0f172a;
-        font-weight: 700;
-    }
-    .dashboard-panel .text-muted,
-    .dashboard-panel .fs-13,
-    .dashboard-panel .fs-14 {
-        color: #64748b !important;
-    }
-    .dashboard-system-item {
-        background: #f8fafc;
-        border: 1px solid rgba(148,163,184,0.18);
-        border-radius: 12px;
-        padding: 0.65rem 0.75rem;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 0.6rem;
-        min-height: 74px;
-    }
-    .dashboard-system-item__head {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.55rem;
-        min-width: 0;
-    }
-    .dashboard-system-item__icon {
-        width: 34px;
-        height: 34px;
-        border-radius: 10px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.92rem;
-        flex: 0 0 auto;
-    }
-    .dashboard-system-item__icon--green { background: rgba(34,197,94,0.14); color: #16a34a; }
-    .dashboard-system-item__icon--blue { background: rgba(59,130,246,0.14); color: #2563eb; }
-    .dashboard-system-item__icon--amber { background: rgba(245,158,11,0.14); color: #d97706; }
-    .dashboard-system-item__icon--slate { background: rgba(100,116,139,0.14); color: #475569; }
-    .dashboard-system-value {
-        font-weight: 600;
-        color: #334155;
-        font-size: 0.95rem;
-        white-space: nowrap;
-    }
-    .dashboard-system-item .badge {
-        border-radius: 999px;
-        padding: 0.36rem 0.62rem;
-        font-size: 0.72rem;
-        letter-spacing: 0.03em;
-    }
-    .dashboard-quick-link {
-        border-radius: 12px;
-        border: 1px solid rgba(148,163,184,0.22);
-        background: #f8fafc;
-        color: #0f172a;
-        font-weight: 600;
-        padding-top: 0.45rem;
-        padding-bottom: 0.45rem;
-        transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-    }
-    .dashboard-quick-link:hover,
-    .dashboard-quick-link:focus {
-        transform: translateY(-1px);
-        border-color: rgba(59,130,246,0.35);
-        box-shadow: 0 8px 20px rgba(59,130,246,0.16);
-        color: #0f172a;
-        background: #ffffff;
-    }
-    .dashboard-members-head {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 0.7rem;
-        flex-wrap: wrap;
-    }
-    .dashboard-members-actions {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.45rem;
-        flex-wrap: wrap;
-    }
-    .dashboard-members-nav-btn {
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-        border: 1px solid rgba(148,163,184,0.35);
-        background: #ffffff;
-        color: #475569;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0;
-    }
-    .dashboard-members-nav-btn:hover,
-    .dashboard-members-nav-btn:focus {
-        color: #1d4ed8;
-        border-color: rgba(59,130,246,0.45);
-        background: #eff6ff;
-    }
-    .dashboard-members-viewport {
-        overflow-x: auto;
-        overflow-y: hidden;
-        scroll-behavior: smooth;
-        scroll-snap-type: x mandatory;
-        padding-bottom: 2px;
-    }
-    .dashboard-members-viewport::-webkit-scrollbar {
-        height: 8px;
-    }
-    .dashboard-members-viewport::-webkit-scrollbar-thumb {
-        background: rgba(148,163,184,0.45);
-        border-radius: 999px;
-    }
-    .dashboard-members-list {
-        display: flex;
-        flex-wrap: nowrap;
-        gap: 0.75rem;
-        min-width: max-content;
-    }
-    .dashboard-member-item {
-        border: 1px solid rgba(148,163,184,0.2);
-        border-radius: 12px;
-        background: #f8fafc;
-        padding: 0.7rem 0.8rem;
-        display: grid;
-        grid-template-columns: 44px minmax(0, 1fr);
-        gap: 0.65rem;
-        align-items: center;
-        width: 250px;
-        flex: 0 0 250px;
-        scroll-snap-align: start;
-    }
-    .dashboard-member-avatar {
-        width: 44px;
-        height: 44px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, #2563eb, #06b6d4);
+    .flow-sidebar {
+        min-height: 0;
+        padding: 22px 8px 18px;
+        border-radius: 16px;
+        background: linear-gradient(180deg, #06254f, #031a39);
         color: #fff;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.95rem;
-        font-weight: 700;
-        text-transform: uppercase;
+        box-shadow: 0 14px 28px rgba(8, 42, 92, .24);
         overflow: hidden;
     }
-    .dashboard-member-avatar img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+    .flow-logo {
+        display: block;
+        margin: 0 18px 18px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid rgba(255,255,255,.22);
+    }
+    .flow-logo img {
+        width: 150px;
+        max-width: 100%;
+        height: auto;
         display: block;
     }
-    .dashboard-member-name {
-        margin: 0;
-        font-size: 0.98rem;
-        color: #0f172a;
-        font-weight: 700;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+    .flow-nav {
+        display: grid;
+        gap: 8px;
+        margin: 0 8px;
     }
-    .dashboard-member-role {
-        display: inline-flex;
-        font-size: 0.67rem;
+    .flow-nav a,
+    .flow-nav button {
+        width: 100%;
+        min-height: 48px;
+        display: grid;
+        grid-template-columns: 38px minmax(0, 1fr);
+        gap: 12px;
+        align-items: center;
+        padding: 0 20px;
+        border-radius: 9px;
+        color: #fff;
+        background: transparent;
+        font: inherit;
+        font-size: .94rem;
+        font-weight: 700;
+        text-align: left;
+        text-decoration: none;
+        cursor: pointer;
+        border: 1px solid transparent;
+    }
+    .flow-nav a.active {
+        background: linear-gradient(135deg, #ff161f, #f64b55);
+        border-color: rgba(255,255,255,.42);
+        box-shadow: inset 0 1px 0 rgba(255,255,255,.5), 0 12px 22px rgba(245,31,43,.25);
+    }
+    .flow-nav i { font-size: 1.4rem; text-align: center; }
+    .flow-nav form { margin: 0; }
+    .flow-nav a:hover,
+    .flow-nav button:hover { background: rgba(255,255,255,.1); color: #fff; }
+    .flow-illustration {
+        margin: 22px auto 0;
+        width: 174px;
+        max-width: 88%;
+        aspect-ratio: 1 / .88;
+        border-radius: 18px;
+        overflow: hidden;
+        background: #06254f;
+        box-shadow: inset 0 0 38px rgba(0,153,255,.18), 0 12px 24px rgba(0, 8, 27, .22);
+    }
+    .flow-illustration img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+    }
+    .flow-sidebar-copy {
+        margin: 24px 24px 0;
+        font-size: .88rem;
+        font-weight: 800;
+        line-height: 1.55;
         text-transform: uppercase;
-        letter-spacing: 0.05em;
-        color: #1d4ed8;
-        background: rgba(59,130,246,0.12);
-        border: 1px solid rgba(59,130,246,0.24);
+    }
+    .flow-sidebar-copy:after {
+        content: "";
+        display: block;
+        width: 40px;
+        height: 3px;
+        margin-top: 10px;
+        background: var(--red);
         border-radius: 999px;
-        padding: 0.16rem 0.45rem;
-        font-weight: 700;
-        margin-top: 0.15rem;
     }
-    .dashboard-member-role--super { color:#1d4ed8; background:#dbeafe; border-color:#bfdbfe; }
-    .dashboard-member-role--petugas { color:#0f766e; background:#ccfbf1; border-color:#99f6e4; }
-    .dashboard-member-role--peminjam { color:#475569; background:#e2e8f0; border-color:#cbd5e1; }
-    .dashboard-member-email {
-        margin: 0.2rem 0 0;
-        font-size: 0.82rem;
-        color: #64748b;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+    .flow-main {
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
     }
-    .dashboard-profile {
+    .data-panel {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) clamp(320px, 24vw, 420px);
+        gap: 20px;
+        padding: 12px 16px 12px;
+        border: 1px solid #dce6f1;
+        border-radius: 16px;
+        background: rgba(255,255,255,.92);
+        box-shadow: 0 10px 24px rgba(8,42,92,.08);
+        flex: 1;
+        min-height: 0;
+    }
+    .panel-heading {
         display: flex;
         align-items: center;
-        gap: 0.8rem;
+        gap: 10px;
+        margin: 0 0 14px;
+        color: #08173d;
+        font-size: 1.08rem;
+        font-weight: 900;
     }
-    .dashboard-profile__avatar {
-        width: 54px;
-        height: 54px;
-        border-radius: 50%;
-        display: inline-flex;
+    .panel-topline {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
         align-items: center;
-        justify-content: center;
-        background: linear-gradient(135deg, #2563eb, #06b6d4);
-        color: #ffffff;
-        font-size: 1.15rem;
-        font-weight: 700;
-        flex: 0 0 auto;
-        text-transform: uppercase;
-        overflow: hidden;
+        justify-content: space-between;
+        margin-bottom: 10px;
     }
-    .dashboard-profile__avatar-img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-    }
-    .dashboard-profile__name {
-        font-size: 1.05rem;
-        font-weight: 700;
-        color: #0f172a;
-        margin-bottom: 0.08rem;
-    }
-    .dashboard-profile__role {
-        display: inline-flex;
+    .period-filter {
+        display: flex;
+        gap: 8px;
         align-items: center;
-        font-size: 0.72rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.06em;
-        color: #1d4ed8;
-        background: rgba(59,130,246,0.12);
-        border: 1px solid rgba(59,130,246,0.26);
+    }
+    .period-filter input {
+        min-height: 36px;
+        border: 1px solid #d9dfe8;
+        border-radius: 8px;
+        padding: 7px 10px;
+        color: #101828;
+        font: inherit;
+        font-weight: 800;
+        background: #fff;
+    }
+    .period-filter button {
+        min-height: 36px;
+        border: 0;
+        border-radius: 8px;
+        padding: 0 12px;
+        background: #082a5c;
+        color: #fff;
+        font: inherit;
+        font-weight: 900;
+        cursor: pointer;
+    }
+    .period-label {
+        padding: 8px 12px;
         border-radius: 999px;
-        padding: 0.2rem 0.55rem;
-        margin-bottom: 0.25rem;
+        background: #eef5ff;
+        color: #082a5c;
+        font-size: .8rem;
+        font-weight: 900;
     }
-    .dashboard-profile__email {
-        color: #64748b;
-        font-size: 0.92rem;
-        margin: 0;
-        word-break: break-word;
-    }
-    .dashboard-profile-meta {
+    .unit-grid {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 0.55rem;
-        margin-top: 0.1rem;
+        grid-template-columns: repeat(3, minmax(190px, 1fr));
+        gap: 14px;
     }
-    .dashboard-profile-meta__item {
-        border: 1px solid rgba(148,163,184,0.2);
-        border-radius: 10px;
-        background: #f8fafc;
-        padding: 0.45rem 0.6rem;
-        min-width: 0;
+    .unit-marquee-window {
+        height: calc(100vh - 232px);
+        min-height: 430px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        position: relative;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(8, 42, 92, .42) rgba(226, 236, 248, .72);
     }
-    .dashboard-profile-meta__label {
-        margin: 0;
-        font-size: 0.66rem;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        color: #64748b;
+    .unit-marquee-window::-webkit-scrollbar {
+        width: 8px;
     }
-    .dashboard-profile-meta__value {
-        margin: 0.16rem 0 0;
-        font-size: 0.88rem;
-        font-weight: 700;
-        color: #0f172a;
+    .unit-marquee-window::-webkit-scrollbar-track {
+        background: rgba(226, 236, 248, .72);
+        border-radius: 999px;
+    }
+    .unit-marquee-window::-webkit-scrollbar-thumb {
+        background: rgba(8, 42, 92, .42);
+        border-radius: 999px;
+    }
+    .unit-marquee-track {
+        display: grid;
+        gap: 14px;
+    }
+    .unit-card {
+        position: relative;
+        min-height: 360px;
+        padding: 24px 16px 92px;
+        border: 1px solid #e1e8f0;
+        border-radius: 12px;
+        background: #fff;
+        box-shadow: 0 10px 22px rgba(8,42,92,.06);
+    }
+    .unit-card h3 {
+        margin: 0 0 16px;
+        padding-bottom: 16px;
+        padding-right: 56px;
+        border-bottom: 2px solid #e9eef4;
+        color: #09275a;
+        font-size: 1.08rem;
+        font-weight: 900;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
     }
-    body[data-theme="dark"] .dashboard-welcome,
-    body[data-theme-version="dark"] .dashboard-welcome,
-    body.theme-dark .dashboard-welcome {
-        background:#111827;
-        border-color:rgba(148,163,184,0.24);
-    }
-    body[data-theme="dark"] .dashboard-welcome__title,
-    body[data-theme-version="dark"] .dashboard-welcome__title,
-    body.theme-dark .dashboard-welcome__title { color:#f8fafc; }
-    body[data-theme="dark"] .dashboard-welcome__subtitle,
-    body[data-theme-version="dark"] .dashboard-welcome__subtitle,
-    body.theme-dark .dashboard-welcome__subtitle { color:#cbd5e1; }
-    body[data-theme="dark"] .dashboard-welcome__hint,
-    body[data-theme-version="dark"] .dashboard-welcome__hint,
-    body.theme-dark .dashboard-welcome__hint {
-        color:#bfdbfe;
-        background:rgba(30,64,175,0.3);
-        border-color:rgba(96,165,250,0.35);
-    }
-    body[data-theme="dark"] .dashboard-clock,
-    body[data-theme-version="dark"] .dashboard-clock,
-    body.theme-dark .dashboard-clock {
-        background:#0b1220;
-        border-color:rgba(148,163,184,0.35);
-        box-shadow:0 10px 24px rgba(2,6,23,0.45);
-    }
-    body[data-theme="dark"] .dashboard-clock__label,
-    body[data-theme-version="dark"] .dashboard-clock__label,
-    body.theme-dark .dashboard-clock__label { color:#94a3b8; }
-    body[data-theme="dark"] .dashboard-clock__value,
-    body[data-theme-version="dark"] .dashboard-clock__value,
-    body.theme-dark .dashboard-clock__value { color:#f8fafc; }
-    body[data-theme="dark"] .dashboard-shell .avtivity-card,
-    body[data-theme-version="dark"] .dashboard-shell .avtivity-card,
-    body.theme-dark .dashboard-shell .avtivity-card {
-        background: #0b1220;
-        border-color: rgba(148,163,184,0.28);
-        box-shadow: 0 14px 34px rgba(2,6,23,0.45);
-    }
-    body[data-theme="dark"] .dashboard-shell .avtivity-card .media-body p,
-    body[data-theme-version="dark"] .dashboard-shell .avtivity-card .media-body p,
-    body.theme-dark .dashboard-shell .avtivity-card .media-body p { color: #94a3b8; }
-    body[data-theme="dark"] .dashboard-shell .avtivity-card .media-body .title,
-    body[data-theme-version="dark"] .dashboard-shell .avtivity-card .media-body .title,
-    body.theme-dark .dashboard-shell .avtivity-card .media-body .title { color: #f8fafc; }
-    body[data-theme="dark"] .dashboard-shell .avtivity-card .progress,
-    body[data-theme-version="dark"] .dashboard-shell .avtivity-card .progress,
-    body.theme-dark .dashboard-shell .avtivity-card .progress { background: #1e293b; }
-    body[data-theme="dark"] .dashboard-shell .avtivity-card .activity-icon,
-    body[data-theme-version="dark"] .dashboard-shell .avtivity-card .activity-icon,
-    body.theme-dark .dashboard-shell .avtivity-card .activity-icon { background: rgba(148,163,184,0.16); }
-    body[data-theme="dark"] .dashboard-panel,
-    body[data-theme-version="dark"] .dashboard-panel,
-    body.theme-dark .dashboard-panel {
-        background: #0b1220;
-        border-color: rgba(148,163,184,0.28);
-        box-shadow: 0 14px 34px rgba(2,6,23,0.45);
-    }
-    body[data-theme="dark"] .dashboard-panel h4,
-    body[data-theme-version="dark"] .dashboard-panel h4,
-    body.theme-dark .dashboard-panel h4,
-    body[data-theme="dark"] .dashboard-panel .card-title,
-    body[data-theme-version="dark"] .dashboard-panel .card-title,
-    body.theme-dark .dashboard-panel .card-title { color: #f8fafc; }
-    body[data-theme="dark"] .dashboard-panel .text-muted,
-    body[data-theme-version="dark"] .dashboard-panel .text-muted,
-    body.theme-dark .dashboard-panel .text-muted,
-    body[data-theme="dark"] .dashboard-panel .fs-13,
-    body[data-theme-version="dark"] .dashboard-panel .fs-13,
-    body.theme-dark .dashboard-panel .fs-13,
-    body[data-theme="dark"] .dashboard-panel .fs-14,
-    body[data-theme-version="dark"] .dashboard-panel .fs-14,
-    body.theme-dark .dashboard-panel .fs-14 { color: #94a3b8 !important; }
-    body[data-theme="dark"] .dashboard-system-item,
-    body[data-theme-version="dark"] .dashboard-system-item,
-    body.theme-dark .dashboard-system-item {
-        background: #111827;
-        border-color: rgba(148,163,184,0.22);
-    }
-    body[data-theme="dark"] .dashboard-system-value,
-    body[data-theme-version="dark"] .dashboard-system-value,
-    body.theme-dark .dashboard-system-value { color: #cbd5e1; }
-    body[data-theme="dark"] .dashboard-system-item__icon--green,
-    body[data-theme-version="dark"] .dashboard-system-item__icon--green,
-    body.theme-dark .dashboard-system-item__icon--green { background: rgba(34,197,94,0.2); color: #4ade80; }
-    body[data-theme="dark"] .dashboard-system-item__icon--blue,
-    body[data-theme-version="dark"] .dashboard-system-item__icon--blue,
-    body.theme-dark .dashboard-system-item__icon--blue { background: rgba(59,130,246,0.2); color: #93c5fd; }
-    body[data-theme="dark"] .dashboard-system-item__icon--amber,
-    body[data-theme-version="dark"] .dashboard-system-item__icon--amber,
-    body.theme-dark .dashboard-system-item__icon--amber { background: rgba(245,158,11,0.2); color: #fbbf24; }
-    body[data-theme="dark"] .dashboard-system-item__icon--slate,
-    body[data-theme-version="dark"] .dashboard-system-item__icon--slate,
-    body.theme-dark .dashboard-system-item__icon--slate { background: rgba(148,163,184,0.2); color: #cbd5e1; }
-    body[data-theme="dark"] .dashboard-profile__name,
-    body[data-theme-version="dark"] .dashboard-profile__name,
-    body.theme-dark .dashboard-profile__name { color: #f8fafc; }
-    body[data-theme="dark"] .dashboard-profile__email,
-    body[data-theme-version="dark"] .dashboard-profile__email,
-    body.theme-dark .dashboard-profile__email { color: #94a3b8; }
-    body[data-theme="dark"] .dashboard-profile-meta__item,
-    body[data-theme-version="dark"] .dashboard-profile-meta__item,
-    body.theme-dark .dashboard-profile-meta__item {
-        background: #111827;
-        border-color: rgba(148,163,184,0.24);
-    }
-    body[data-theme="dark"] .dashboard-profile-meta__label,
-    body[data-theme-version="dark"] .dashboard-profile-meta__label,
-    body.theme-dark .dashboard-profile-meta__label { color: #94a3b8; }
-    body[data-theme="dark"] .dashboard-profile-meta__value,
-    body[data-theme-version="dark"] .dashboard-profile-meta__value,
-    body.theme-dark .dashboard-profile-meta__value { color: #f8fafc; }
-    body[data-theme="dark"] .dashboard-profile__role,
-    body[data-theme-version="dark"] .dashboard-profile__role,
-    body.theme-dark .dashboard-profile__role {
-        color: #bfdbfe;
-        background: rgba(30,64,175,0.3);
-        border-color: rgba(96,165,250,0.35);
-    }
-    body[data-theme="dark"] .dashboard-quick-link,
-    body[data-theme-version="dark"] .dashboard-quick-link,
-    body.theme-dark .dashboard-quick-link {
-        background: #111827;
-        border-color: rgba(148,163,184,0.25);
-        color: #e2e8f0;
-    }
-    body[data-theme="dark"] .dashboard-quick-link:hover,
-    body[data-theme-version="dark"] .dashboard-quick-link:hover,
-    body.theme-dark .dashboard-quick-link:hover {
-        color: #f8fafc;
-        background: #1e293b;
-    }
-    body[data-theme="dark"] .dashboard-member-item,
-    body[data-theme-version="dark"] .dashboard-member-item,
-    body.theme-dark .dashboard-member-item {
-        background: #111827;
-        border-color: rgba(148,163,184,0.24);
-    }
-    body[data-theme="dark"] .dashboard-member-name,
-    body[data-theme-version="dark"] .dashboard-member-name,
-    body.theme-dark .dashboard-member-name { color: #f8fafc; }
-    body[data-theme="dark"] .dashboard-member-email,
-    body[data-theme-version="dark"] .dashboard-member-email,
-    body.theme-dark .dashboard-member-email { color: #94a3b8; }
-    body[data-theme="dark"] .dashboard-member-role,
-    body[data-theme-version="dark"] .dashboard-member-role,
-    body.theme-dark .dashboard-member-role {
-        color: #bfdbfe;
-        background: rgba(30,64,175,0.3);
-        border-color: rgba(96,165,250,0.35);
-    }
-    body[data-theme="dark"] .dashboard-member-role--peminjam,
-    body[data-theme-version="dark"] .dashboard-member-role--peminjam,
-    body.theme-dark .dashboard-member-role--peminjam { color:#e2e8f0; background:#1e293b; border-color:#334155; }
-    body[data-theme="dark"] .dashboard-member-role--petugas,
-    body[data-theme-version="dark"] .dashboard-member-role--petugas,
-    body.theme-dark .dashboard-member-role--petugas { color:#99f6e4; background:rgba(13,148,136,0.2); border-color:rgba(45,212,191,0.35); }
-    body[data-theme="dark"] .dashboard-member-role--super,
-    body[data-theme-version="dark"] .dashboard-member-role--super,
-    body.theme-dark .dashboard-member-role--super { color:#bfdbfe; background:rgba(37,99,235,0.24); border-color:rgba(96,165,250,0.38); }
-    body[data-theme="dark"] .dashboard-members-nav-btn,
-    body[data-theme-version="dark"] .dashboard-members-nav-btn,
-    body.theme-dark .dashboard-members-nav-btn {
-        background: #111827;
-        border-color: rgba(148,163,184,0.35);
-        color: #cbd5e1;
-    }
-    body[data-theme="dark"] .dashboard-members-nav-btn:hover,
-    body[data-theme-version="dark"] .dashboard-members-nav-btn:hover,
-    body.theme-dark .dashboard-members-nav-btn:hover {
-        color: #bfdbfe;
-        background: #1e293b;
-    }
-    @media (max-width: 768px) {
-        .dashboard-shell { gap: 0.75rem; }
-        .dashboard-side-col { display: block; }
-        .dashboard-panel--status {
-            min-height: 0;
-        }
-        .dashboard-panel--profile {
-            min-height: 0;
-            height: auto;
-        }
-        .dashboard-panel--members {
-            height: auto;
-        }
-        .dashboard-panel--members .card-body {
-            overflow: visible;
-        }
-        .dashboard-panel--menu {
-            min-height: 0;
-        }
-        .dashboard-clock {
-            min-width: 0;
-            min-height: 92px;
-            width: 100%;
-            max-width: none;
-            display: flex;
-        }
-        .dashboard-shell .avtivity-card .media-body .title {
-            font-size: 1.55rem;
-        }
-        .dashboard-shell .avtivity-card {
-            min-height: 170px;
-        }
-        .dashboard-member-item {
-            width: 220px;
-            flex-basis: 220px;
-        }
-        .dashboard-profile-meta {
-            grid-template-columns: 1fr;
-        }
-    }
-    @media (max-width: 1200px) {
-        .dashboard-clock {
-            min-width: 0;
-            max-width: none;
-            width: 100%;
-            display: flex;
-        }
-        .dashboard-clock__value {
-            font-size: clamp(0.82rem, 1vw + 0.35rem, 1.02rem);
-        }
-    }
-    @media (min-width: 1600px) {
-        .dashboard-panel--status .dashboard-status-col {
-            flex: 0 0 50%;
-            max-width: 50%;
-        }
-    }
-    .dashboard-refresh-toast {
-        position: fixed;
+    .traffic {
+        position: absolute;
+        top: 14px;
         right: 18px;
-        bottom: 18px;
-        z-index: 1090;
-        border-radius: 10px;
-        padding: 0.6rem 0.8rem;
-        font-size: 0.83rem;
-        font-weight: 600;
-        box-shadow: 0 10px 24px rgba(15, 23, 42, 0.18);
-        opacity: 0;
-        transform: translateY(10px);
-        pointer-events: none;
-        transition: opacity 0.2s ease, transform 0.2s ease;
-        max-width: min(360px, calc(100vw - 32px));
+        width: 36px;
+        height: 76px;
+        padding: 6px 7px;
+        border-radius: 5px;
+        background: linear-gradient(180deg, #161616, #050505);
+        box-shadow: inset 0 0 0 3px #2a2a2a, 0 7px 11px rgba(0,0,0,.28);
+        display: grid;
+        gap: 5px;
     }
-    .dashboard-refresh-toast.is-success {
-        background: #dcfce7;
-        color: #166534;
-        border: 1px solid #86efac;
+    .traffic:after {
+        content: "";
+        position: absolute;
+        left: 14px;
+        bottom: -12px;
+        width: 10px;
+        height: 12px;
+        background: #151515;
     }
-    .dashboard-refresh-toast.is-error {
-        background: #fee2e2;
-        color: #991b1b;
-        border: 1px solid #fca5a5;
+    .bulb {
+        width: 22px;
+        height: 17px;
+        border-radius: 999px;
+        opacity: .44;
+        box-shadow: inset 0 0 7px rgba(255,255,255,.18);
     }
-    .dashboard-refresh-toast.is-show {
+    .bulb.red { background: #4a0709; }
+    .bulb.yellow { background: #4b3904; }
+    .bulb.green { background: #043d16; }
+    .traffic.punishment .red,
+    .traffic.warning .yellow,
+    .traffic.aman .green {
         opacity: 1;
-        transform: translateY(0);
+        animation: flow-blink 1.1s infinite;
     }
-    body[data-theme="dark"] .dashboard-refresh-toast,
-    body[data-theme-version="dark"] .dashboard-refresh-toast,
-    body.theme-dark .dashboard-refresh-toast {
-        box-shadow: 0 10px 24px rgba(2, 6, 23, 0.5);
+    .traffic.punishment .red { background: #ff1b24; box-shadow: 0 0 12px #ff1b24, inset 0 0 7px #fff; }
+    .traffic.warning .yellow { background: #ffc400; box-shadow: 0 0 12px #ffc400, inset 0 0 7px #fff; }
+    .traffic.aman .green { background: #0fbc55; box-shadow: 0 0 12px #0fbc55, inset 0 0 7px #fff; }
+    @keyframes flow-blink {
+        0%, 48%, 100% { filter: brightness(1.12); }
+        50%, 86% { filter: brightness(.52); }
     }
-    body[data-theme="dark"] .dashboard-refresh-toast.is-success,
-    body[data-theme-version="dark"] .dashboard-refresh-toast.is-success,
-    body.theme-dark .dashboard-refresh-toast.is-success {
-        background: rgba(20, 83, 45, 0.92);
-        color: #bbf7d0;
-        border-color: rgba(74, 222, 128, 0.5);
+    .metric {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 18px;
+        gap: 10px;
+        align-items: center;
+        margin-top: 10px;
+        font-size: .76rem;
+        font-weight: 800;
     }
-    body[data-theme="dark"] .dashboard-refresh-toast.is-error,
-    body[data-theme-version="dark"] .dashboard-refresh-toast.is-error,
-    body.theme-dark .dashboard-refresh-toast.is-error {
-        background: rgba(127, 29, 29, 0.92);
-        color: #fecaca;
-        border-color: rgba(248, 113, 113, 0.5);
+    .metric-name {
+        color: #121b35;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .metric-arrow { text-align: right; font-size: 1rem; line-height: 1; }
+    .metric-arrow.down { color: var(--red); }
+    .metric-arrow.flat { color: #8a8f9a; }
+    .metric-arrow.up { color: var(--green); }
+    .bar {
+        grid-column: 1 / -1;
+        height: 3px;
+        overflow: hidden;
+        border-radius: 999px;
+        background: #e7edf4;
+    }
+    .bar span { display: block; height: 100%; border-radius: inherit; }
+    .unit-card.punishment .bar span { background: var(--red); }
+    .unit-card.warning .bar span { background: var(--yellow); }
+    .unit-card.aman .bar span { background: var(--green); }
+    .total-card {
+        position: absolute;
+        left: 14px;
+        right: 14px;
+        bottom: 14px;
+        min-height: 64px;
+        display: grid;
+        grid-template-columns: 46px minmax(0, 1fr) auto;
+        gap: 12px;
+        align-items: center;
+        padding: 12px;
+        border: 1px solid #dde6ef;
+        border-radius: 10px;
+        background: #fdfefe;
+    }
+    .total-icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        color: #fff;
+        font-size: 1.45rem;
+    }
+    .unit-card.punishment .total-icon { background: #0c4aa2; }
+    .unit-card.warning .total-icon { background: #788087; }
+    .unit-card.aman .total-icon { background: #14a052; }
+    .total-label {
+        margin: 0;
+        color: #111a35;
+        font-size: .72rem;
+        font-weight: 900;
+        text-transform: uppercase;
+    }
+    .total-score {
+        margin: 2px 0 0;
+        font-size: 1.38rem;
+        font-weight: 900;
+        line-height: 1;
+    }
+    .unit-card.punishment .total-score { color: var(--red); }
+    .unit-card.warning .total-score { color: var(--yellow); }
+    .unit-card.aman .total-score { color: var(--green); }
+    .total-badge {
+        min-width: 76px;
+        padding: 7px 12px;
+        border-radius: 999px;
+        color: #fff;
+        font-size: .72rem;
+        font-weight: 900;
+        text-align: center;
+        text-transform: uppercase;
+    }
+    .unit-card.punishment .total-badge { background: var(--red); }
+    .unit-card.warning .total-badge { background: var(--yellow); color: #152044; }
+    .unit-card.aman .total-badge { background: var(--green); }
+    .status-column {
+        display: grid;
+        gap: 10px;
+        padding-top: 12px;
+        align-content: start;
+    }
+    .status-box {
+        position: relative;
+        min-height: 66px;
+        border-radius: 14px;
+        color: #fff;
+        overflow: visible;
+        box-shadow: 0 16px 28px rgba(8,42,92,.16);
+    }
+    .status-box .traffic {
+        top: 8px;
+        right: 16px;
+        transform: scale(.54);
+        transform-origin: top right;
+    }
+    .status-title {
+        min-height: 66px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 0 58px 0 16px;
+        border-bottom: 1px solid rgba(255,255,255,.5);
+        font-size: .9rem;
+        font-weight: 900;
+        text-transform: uppercase;
+    }
+    .status-toggle {
+        width: 100%;
+        min-height: 66px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        border: 0;
+        background: transparent;
+        color: inherit;
+        font: inherit;
+        font-size: .86rem;
+        font-weight: 900;
+        text-align: left;
+        text-transform: uppercase;
+        cursor: pointer;
+    }
+    .status-toggle i {
+        width: 24px;
+        height: 24px;
+        display: grid;
+        place-items: center;
+        border-radius: 999px;
+        background: rgba(255,255,255,.18);
+        transition: transform .18s ease, background .18s ease;
+    }
+    .status-box.is-open .status-toggle i {
+        transform: rotate(180deg);
+        background: rgba(255,255,255,.28);
+    }
+    .status-content {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 14px;
+        align-items: center;
+        max-height: 0;
+        padding: 0 18px;
+        overflow: hidden;
+        transition: max-height .24s ease, padding .24s ease;
+    }
+    .status-box.is-open .status-content {
+        max-height: none;
+        padding: 10px 14px 12px;
+        overflow: visible;
+    }
+    .status-content i {
+        font-size: 2.4rem;
+        line-height: 1;
+    }
+    .status-content p {
+        margin: 0;
+        font-size: .78rem;
+        font-weight: 700;
+        line-height: 1.3;
+    }
+    .status-units {
+        display: grid;
+        gap: 6px;
+        margin-top: 8px;
+        font-size: .74rem;
+        opacity: .88;
+    }
+    .status-unit-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        min-height: 28px;
+        padding: 6px 8px;
+        border-radius: 8px;
+        background: rgba(255,255,255,.16);
+        font-weight: 900;
+        line-height: 1.2;
+    }
+    .status-unit-item i {
+        flex: 0 0 auto;
+        width: 18px;
+        font-size: .76rem;
+        opacity: .9;
+    }
+    .status-box.punishment { background: linear-gradient(145deg, #f51f2b, #f2222a); }
+    .status-box.warning { background: linear-gradient(145deg, #f6ad00, #ffc30c); }
+    .status-box.aman { background: linear-gradient(145deg, #0fae53, #0d9b49); }
+    .feature-row {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(130px, 1fr));
+        gap: 14px;
+        margin-top: 16px;
+    }
+    .feature {
+        min-height: 58px;
+        display: grid;
+        grid-template-columns: 40px minmax(0, 1fr);
+        gap: 12px;
+        align-items: center;
+        padding: 8px 14px;
+        border: 1px solid #dce6f1;
+        border-radius: 10px;
+        background: #fff;
+        color: #082a5c;
+        box-shadow: 0 8px 18px rgba(8,42,92,.07);
+    }
+    .feature i { font-size: 1.55rem; text-align: center; }
+    .feature strong {
+        display: block;
+        font-size: .82rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        line-height: 1.15;
+    }
+    .feature span {
+        display: block;
+        margin-top: 2px;
+        font-size: .86rem;
+        font-weight: 700;
+        line-height: 1.15;
+    }
+    .flow-footer {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 20;
+        margin-top: 0;
+        min-height: 46px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 22px;
+        background: linear-gradient(90deg, #062650, #08356f);
+        color: #fff;
+        font-size: .92rem;
+        font-weight: 500;
+        text-align: center;
+    }
+    @media (max-width: 1500px) {
+        .flow-body { grid-template-columns: 210px minmax(0, 1fr); padding-inline: 22px; gap: 18px; }
+        .data-panel { grid-template-columns: 1fr; }
+        .status-column { grid-template-columns: repeat(3, minmax(220px, 1fr)); padding-top: 8px; }
+        .feature-row { gap: 16px; }
+    }
+    @media (max-width: 1100px) {
+        .flow-hero { padding-right: 28px; }
+        .flow-brand { position: relative; top: auto; right: auto; margin-top: 18px; color: #09275a; }
+        .flow-brand-mark { border-color: #0b448d; color: #0b448d; }
+        .flow-body { grid-template-columns: 1fr; }
+        .flow-sidebar { min-height: auto; }
+        .unit-grid,
+        .status-column,
+        .feature-row { grid-template-columns: 1fr; }
+        .unit-card { min-height: 360px; }
+    }
+    @media (max-width: 720px) {
+        .flow-hero { padding: 24px 18px 18px; }
+        .flow-body { padding: 18px 12px 0; }
+        .flow-nav { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        .flow-nav a,
+        .flow-nav button {
+            min-height: 54px;
+            grid-template-columns: 1fr;
+            justify-items: center;
+            gap: 5px;
+            padding: 8px 6px;
+            font-size: .84rem;
+            text-align: center;
+        }
+        .flow-logo { margin-bottom: 16px; }
+        .flow-illustration,
+        .flow-sidebar-copy { display: none; }
+        .data-panel { padding: 16px 12px; }
+        .flow-hero-logo { width: min(240px, 78vw); min-height: 54px; }
+        .flow-hero-logo img { max-height: 62px; }
+        .flow-title { font-size: 2.15rem; }
+        .flow-subtitle { font-size: 1.1rem; }
+        .flow-brand { grid-template-columns: 50px 1fr; }
+        .flow-brand-mark { width: 48px; height: 48px; border-radius: 14px; font-size: 1.25rem; }
+        .flow-brand strong { font-size: 1.25rem; }
+        .unit-card { min-height: 360px; }
+        .total-card { grid-template-columns: 44px minmax(0, 1fr); }
+        .total-badge { grid-column: 1 / -1; }
+        .unit-marquee-window { height: auto; min-height: 0; overflow: visible; }
     }
 </style>
-@endpush
-
-@section('title', 'Dashboard')
-
-@section('content')
-@php
-    $periodStart = now()->copy()->startOfMonth();
-    $periodEnd = now()->copy()->endOfDay();
-
-    $dayKeys = collect(range(0, $periodStart->diffInDays($periodEnd)))
-        ->map(fn ($offset) => $periodStart->copy()->addDays($offset)->format('Y-m-d'));
-
-    $dayLabels = $dayKeys
-        ->map(function ($key) {
-            try {
-                return \Carbon\Carbon::createFromFormat('Y-m-d', $key)->translatedFormat('d M');
-            } catch (\Throwable $e) {
-                return $key;
-            }
-        })
-        ->values();
-
-    $petugasNames = \App\Models\User::query()
-        ->where('role', \App\Models\User::ROLE_PETUGAS)
-        ->pluck('name')
-        ->filter(fn ($name) => !empty($name))
-        ->values();
-
-    $petugasLoanRows = \App\Models\Loan::query()
-        ->selectRaw("DATE(loan_date) as day_key, borrower_name, COUNT(*) as total")
-        ->whereBetween('loan_date', [$periodStart->toDateString(), $periodEnd->toDateString()])
-        ->whereNotNull('borrower_name')
-        ->when($petugasNames->isNotEmpty(), fn ($query) => $query->whereIn('borrower_name', $petugasNames))
-        ->groupBy('day_key', 'borrower_name')
-        ->get();
-
-    $topPetugas = $petugasLoanRows
-        ->groupBy('borrower_name')
-        ->map(fn ($rows) => (int) $rows->sum('total'))
-        ->sortDesc()
-        ->keys()
-        ->take(6)
-        ->values();
-
-    if ($topPetugas->isEmpty() && $petugasNames->isNotEmpty()) {
-        $topPetugas = $petugasNames->take(6)->values();
-    }
-
-    $petugasMonthlySeries = $topPetugas->map(function ($petugas) use ($dayKeys, $petugasLoanRows) {
-        return [
-            'name' => $petugas,
-            'data' => $dayKeys
-                ->map(function ($dayKey) use ($petugas, $petugasLoanRows) {
-                    $row = $petugasLoanRows->first(function ($item) use ($petugas, $dayKey) {
-                        return $item->borrower_name === $petugas && $item->day_key === $dayKey;
-                    });
-
-                    return (int) ($row->total ?? 0);
-                })
-                ->values()
-                ->all(),
-        ];
-    })->values();
-
-    $petugasMonthlyGrandTotal = (int) $petugasLoanRows->sum('total');
-@endphp
+</head>
+<body>
 <main class="content-body">
-    <div id="petugasMonthlyToast" class="dashboard-refresh-toast" aria-live="polite" role="status"></div>
-    <div class="container-fluid">
-        <div class="dashboard-shell">
-            <div class="dashboard-welcome row g-3 align-items-center">
-                <div class="col-lg-8 col-xl-8">
-                    <div class="dashboard-welcome__title">Selamat Datang, {{ auth()->user()->name ?? 'User' }}!</div>
-                    <div class="dashboard-welcome__subtitle">Sistem SARPRAS PUSDATEKIN BPIP</div>
-                    <div class="dashboard-welcome__hint">
-                        <i class="fas fa-bolt"></i>
-                        Ringkasan cepat aktivitas sarpras
-                    </div>
-                </div>
-                <div class="col-lg-4 col-xl-4">
-                    <div class="dashboard-clock ms-xl-auto" aria-live="polite">
-                        <div class="dashboard-clock__label">Hari & Jam</div>
-                        <div class="dashboard-clock__value" id="dashboardClock">-</div>
-                    </div>
+    <section class="ikpa-flow" aria-label="Dashboard SIMPATI PRIMA">
+        <header class="flow-hero">
+            <div class="flow-hero-logo">
+                <img src="{{ asset('images/simpati-prima-logo.png') }}" alt="Simpati IKPA">
+            </div>
+            <div class="flow-brand" aria-label="Simpati Prima">
+                <div class="flow-brand-mark"><i class="fas fa-chart-line"></i></div>
+                <div>
+                    <strong>SIMPATI PRIMA</strong>
+                    <span>Sistem Informasi Monitoring dan Evaluasi Kinerja Pelaksanaan Anggaran</span>
                 </div>
             </div>
+        </header>
 
-            <!-- Overview Row -->
-            <div class="row dashboard-overview-row">
-                <div class="col-xl-8">
-                    <div class="row dashboard-stats-row">
-                        <div class="col-sm-6 col-lg-4">
-                            <div class="card avtivity-card">
-                                <div class="card-body">
-                                    <div class="media align-items-center">
-                                        <span class="activity-icon bgl-success me-md-4 me-3">
-                                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <rect x="5" y="5" width="30" height="30" rx="8" stroke="#27BC48" stroke-width="3"/>
-                                                <path d="M10 16H30M16 10V30M24 10V30" stroke="#27BC48" stroke-width="2.5" stroke-linecap="round"/>
-                                                <rect x="11.5" y="11.5" width="3.8" height="3.8" rx="1" fill="#27BC48" opacity="0.75"/>
-                                                <rect x="24.7" y="24.7" width="3.8" height="3.8" rx="1" fill="#27BC48" opacity="0.75"/>
-                                            </svg>
-                                        </span>
-                                        <div class="media-body">
-                                            <p class="fs-14 mb-2">Total Barang</p>
-                                            <span class="title text-black font-w600">{{ \App\Models\Asset::count() }}</span>
-                                        </div>
-                                    </div>
-                                    <div class="progress" style="height:5px;">
-                                        <div class="progress-bar bg-success" style="width: 100%; height:5px;" role="progressbar"></div>
-                                    </div>
-                                </div>
-                                <div class="effect bg-success"></div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-lg-4">
-                            <div class="card avtivity-card">
-                                <div class="card-body">
-                                    <div class="media align-items-center">
-                                        <span class="activity-icon bgl-secondary  me-md-4 me-3">
-                                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <circle cx="14" cy="16" r="5" stroke="#A02CFA" stroke-width="2.8"/>
-                                                <circle cx="26" cy="15" r="4" stroke="#A02CFA" stroke-width="2.6" opacity="0.8"/>
-                                                <path d="M7 30c0-4.4 3.6-8 8-8h2c4.4 0 8 3.6 8 8" stroke="#A02CFA" stroke-width="2.8" stroke-linecap="round"/>
-                                                <path d="M22 29.5c.6-3.4 3.2-6 6.5-6H29c2.2 0 4.2 1.2 5.3 3.1" stroke="#A02CFA" stroke-width="2.6" stroke-linecap="round" opacity="0.8"/>
-                                            </svg>
-                                        </span>
-                                        <div class="media-body">
-                                            <p class="fs-14 mb-2">Total User</p>
-                                            <span class="title text-black font-w600">{{ \App\Models\User::count() }}</span>
-                                        </div>
-                                    </div>
-                                    <div class="progress" style="height:5px;">
-                                        <div class="progress-bar bg-secondary" style="width: 100%; height:5px;" role="progressbar"></div>
-                                    </div>
-                                </div>
-                                <div class="effect bg-secondary"></div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-lg-4">
-                            <div class="card avtivity-card">
-                                <div class="card-body">
-                                    <div class="media align-items-center">
-                                        <span class="activity-icon bgl-warning  me-md-4 me-3">
-                                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <rect x="5" y="8" width="30" height="24" rx="6" stroke="#FFBC11" stroke-width="3"/>
-                                                <path d="M5 16h30" stroke="#FFBC11" stroke-width="2.6"/>
-                                                <path d="M13 21.5l4 4 9-9" stroke="#FFBC11" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
-                                            </svg>
-                                        </span>
-                                        <div class="media-body">
-                                            <p class="fs-14 mb-2">Total Pinjaman</p>
-                                            <span class="title text-black font-w600">{{ \App\Models\Loan::count() ?? 0 }}</span>
-                                        </div>
-                                    </div>
-                                    <div class="progress" style="height:5px;">
-                                        <div class="progress-bar bg-warning" style="width: 100%; height:5px;" role="progressbar"></div>
-                                    </div>
-                                </div>
-                                <div class="effect bg-warning"></div>
-                            </div>
-                        </div>
-                    </div>
+        <div class="flow-body">
+            @include('ikpa.partials.sidebar', ['activeMenu' => 'dashboard'])
 
-                    <div class="card dashboard-panel dashboard-panel--members mt-3">
-                        <div class="card-header border-0 pb-0 dashboard-members-head">
-                            <div>
-                                <h4 class="mb-0">Daftar Anggota</h4>
-                                <p class="fs-13 mb-0">Anggota terbaru yang terdaftar di sistem.</p>
-                            </div>
-                            <div class="dashboard-members-actions">
-                                <button type="button" class="dashboard-members-nav-btn" data-members-nav="prev" aria-label="Lihat anggota sebelumnya">
-                                    <i class="fas fa-chevron-left"></i>
-                                </button>
-                                <button type="button" class="dashboard-members-nav-btn" data-members-nav="next" aria-label="Lihat anggota berikutnya">
-                                    <i class="fas fa-chevron-right"></i>
-                                </button>
-                                <a href="{{ route('users.index') }}" class="btn btn-outline-primary btn-sm">Lihat Semua</a>
-                            </div>
+            <div class="flow-main">
+                <section class="data-panel">
+                    <div>
+                        <div class="panel-topline">
+                            <h2 class="panel-heading"><i class="fas fa-chart-bar"></i> Data Unit</h2>
+                            <form class="period-filter" method="GET" action="{{ route('dashboard') }}">
+                                <input type="month" name="period" value="{{ $periodValue }}" aria-label="Bulan periode">
+                                <button type="submit">Tampilkan</button>
+                                <span class="period-label">{{ $periodLabel }}</span>
+                            </form>
                         </div>
-                        <div class="card-body">
-                            @php($dashboardMembers = \App\Models\User::query()
-                                ->orderByRaw("CASE role WHEN 'super_admin' THEN 1 WHEN 'petugas' THEN 2 WHEN 'peminjam' THEN 3 ELSE 4 END")
-                                ->latest()
-                                ->take(8)
-                                ->get())
-                            @if($dashboardMembers->isEmpty())
-                                <p class="text-muted mb-0">Belum ada anggota terdaftar.</p>
-                            @else
-                                <div class="dashboard-members-viewport" id="dashboardMembersViewport">
-                                    <div class="dashboard-members-list">
-                                        @foreach($dashboardMembers as $member)
-                                            <div class="dashboard-member-item">
-                                                <span class="dashboard-member-avatar">
-                                                    @if($member->photo_url)
-                                                        <img src="{{ $member->photo_url }}" alt="Foto {{ $member->name }}">
-                                                    @else
-                                                        {{ strtoupper(substr($member->name ?? 'U', 0, 1)) }}
-                                                    @endif
-                                                </span>
-                                                <div>
-                                                    <p class="dashboard-member-name">{{ $member->name }}</p>
-                                                    <span class="dashboard-member-role {{ $member->role === \App\Models\User::ROLE_SUPER_ADMIN ? 'dashboard-member-role--super' : ($member->role === \App\Models\User::ROLE_PETUGAS ? 'dashboard-member-role--petugas' : 'dashboard-member-role--peminjam') }}">{{ $member->role_label }}</span>
-                                                    <p class="dashboard-member-email">{{ $member->email }}</p>
+                        <div class="unit-marquee-window">
+                            <div class="unit-marquee-track">
+                                @foreach ([1, 2] as $repeat)
+                                    <div class="unit-grid" @if($repeat === 2) aria-hidden="true" @endif>
+                                        @foreach ($units as $unit)
+                                            @php
+                                                $status = $unit->status();
+                                                $score = $unit->score();
+                                                $badge = ['punishment' => 'Rendah', 'warning' => 'Sedang', 'aman' => 'Tinggi'][$status] ?? 'Tinggi';
+                                            @endphp
+                                            <article class="unit-card {{ $status }}">
+                                                <div class="traffic {{ $status }}" aria-label="Status {{ $badge }}">
+                                                    <span class="bulb red"></span>
+                                                    <span class="bulb yellow"></span>
+                                                    <span class="bulb green"></span>
                                                 </div>
-                                            </div>
+                                                <h3>{{ $unit->name }}</h3>
+
+                                                @foreach ($metrics as $key => $label)
+                                                    @php
+                                                        $value = (int) $unit->{$key};
+                                                        $arrowClass = $value <= 30 ? 'down' : ($value <= 60 ? 'flat' : 'up');
+                                                        $arrow = $value <= 30 ? '&#8600;' : ($value <= 60 ? '&minus;' : '&#8599;');
+                                                    @endphp
+                                                    <div class="metric">
+                                                        <span class="metric-name">{{ $label }} : {{ $value }}%</span>
+                                                        <span class="metric-arrow {{ $arrowClass }}">{!! $arrow !!}</span>
+                                                        <span class="bar"><span style="width: {{ $value }}%"></span></span>
+                                                    </div>
+                                                @endforeach
+
+                                                <div class="total-card">
+                                                    <span class="total-icon"><i class="fas fa-chart-bar"></i></span>
+                                                    <div>
+                                                        <p class="total-label">Capaian Total</p>
+                                                        <p class="total-score">{{ $score }}%</p>
+                                                    </div>
+                                                    <span class="total-badge">{{ $badge }}</span>
+                                                </div>
+                                            </article>
                                         @endforeach
                                     </div>
-                                </div>
-                            @endif
+                                @endforeach
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-xl-4">
-                    <div class="card dashboard-panel dashboard-panel--profile">
-                        <div class="card-header border-0 pb-0">
-                            <h4 class="card-title mb-0">Informasi Profil</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="mb-4 pb-3 border-bottom">
-                                <h6 class="mb-3 font-w600">Pengguna Saat Ini</h6>
-                                <div class="dashboard-profile">
-                                    <span class="dashboard-profile__avatar">
-                                        @if(auth()->user()?->photo_url)
-                                            <img class="dashboard-profile__avatar-img" src="{{ auth()->user()->photo_url }}" alt="Foto {{ auth()->user()->name }}">
-                                        @else
-                                            {{ strtoupper(substr(auth()->user()->name ?? 'U', 0, 1)) }}
-                                        @endif
-                                    </span>
-                                    <div>
-                                        <div class="dashboard-profile__name">{{ auth()->user()->name ?? 'User' }}</div>
-                                        <div class="dashboard-profile__role">{{ auth()->user()?->role_label ?? 'Pengguna' }}</div>
-                                        <p class="dashboard-profile__email">{{ auth()->user()->email ?? 'email@example.com' }}</p>
-                                    </div>
-                                </div>
 
-                                <div class="dashboard-profile-meta mt-3">
-                                    <div class="dashboard-profile-meta__item">
-                                        <p class="dashboard-profile-meta__label">ID Pengguna</p>
-                                        <p class="dashboard-profile-meta__value">#{{ auth()->id() ?? '-' }}</p>
-                                    </div>
-                                    <div class="dashboard-profile-meta__item">
-                                        <p class="dashboard-profile-meta__label">Bergabung</p>
-                                        <p class="dashboard-profile-meta__value">{{ optional(auth()->user()?->created_at)->format('d M Y') ?? '-' }}</p>
-                                    </div>
-                                    <div class="dashboard-profile-meta__item">
-                                        <p class="dashboard-profile-meta__label">Status Akses</p>
-                                        <p class="dashboard-profile-meta__value">Aktif</p>
-                                    </div>
+                    <aside class="status-column" aria-label="Kategori capaian">
+                        @foreach ([
+                            'punishment' => [
+                                'title' => 'Punishment',
+                                'icon' => 'fas fa-gavel',
+                                'text' => 'Tindakan tegas atas kinerja yang tidak tercapai',
+                            ],
+                            'warning' => [
+                                'title' => 'Warning',
+                                'icon' => 'fas fa-exclamation-triangle',
+                                'text' => 'Peringatan dini untuk perbaikan kinerja',
+                            ],
+                            'aman' => [
+                                'title' => 'Appreciation',
+                                'icon' => 'fas fa-award',
+                                'text' => 'Apresiasi atas pencapaian kinerja optimal',
+                            ],
+                        ] as $key => $meta)
+                            <section class="status-box {{ $key }}">
+                                <div class="traffic {{ $key }}" aria-hidden="true">
+                                    <span class="bulb red"></span>
+                                    <span class="bulb yellow"></span>
+                                    <span class="bulb green"></span>
                                 </div>
-                            </div>
-                            <div class="text-center pt-1">
-                                <a href="{{ route('profile.show') }}" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Lihat Profil</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                                <div class="status-title">
+                                    <button class="status-toggle" type="button" aria-expanded="false">
+                                        <span>{{ $meta['title'] }}</span>
+                                        <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                                <div class="status-content">
+                                    <p>
+                                        {{ $meta['text'] }}
+                                        <span class="status-units">
+                                            @forelse ($groups[$key] as $groupUnit)
+                                                <span class="status-unit-item"><i class="{{ $meta['icon'] }}" aria-hidden="true"></i>{{ $groupUnit->name }}</span>
+                                            @empty
+                                                <span class="status-unit-item"><i class="fas fa-minus" aria-hidden="true"></i>-</span>
+                                            @endforelse
+                                        </span>
+                                    </p>
+                                </div>
+                            </section>
+                        @endforeach
+                    </aside>
+                </section>
 
-            <!-- Content Row -->
-            <div class="row dashboard-content-row">
-            <div class="col-12">
-                <div class="card dashboard-panel">
-                    <div class="card-header d-sm-flex d-block pb-0 border-0">
-                        <div class="me-auto pe-3 mb-sm-0 mb-3">
-                            <h4 class="text-black fs-20 font-w600">Grafik Peminjaman Petugas (Bulan Berjalan)</h4>
-                            <p class="fs-13 mb-0">Periode {{ $periodStart->translatedFormat('d M Y') }} - {{ $periodEnd->translatedFormat('d M Y') }}.</p>
-                        </div>
-                        <div class="mb-3 d-flex gap-2 flex-wrap">
-                            <button type="button" class="btn btn-outline-primary btn-sm" id="petugasMonthlyRefreshBtn">
-                                <i class="fas fa-rotate-right me-1"></i> Refresh
-                            </button>
-                            <span class="badge light badge-primary" id="petugasMonthlyTotalBadge">Total: {{ number_format($petugasMonthlyGrandTotal, 0, ',', '.') }}</span>
-                            <span class="badge light badge-info" id="petugasMonthlyCountBadge">Petugas tampil: {{ $petugasMonthlySeries->count() }}</span>
-                            <span class="badge light badge-secondary" id="petugasMonthlyUpdatedBadge">Update: -</span>
-                        </div>
-                    </div>
-                    <div class="card-body pt-0">
-                        @if($petugasMonthlySeries->isEmpty())
-                            <p class="text-muted mb-0">Belum ada data peminjaman petugas pada periode ini.</p>
-                        @else
-                            <div
-                                id="chartPetugasMonthlyLoan"
-                                data-labels='@json($dayLabels)'
-                                data-series='@json($petugasMonthlySeries)'
-                                data-endpoint="{{ route('dashboard.chart.petugas-monthly') }}"
-                            ></div>
-                        @endif
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 col-xl-6 col-xxl-6 dashboard-side-col">
-                <div class="card dashboard-panel dashboard-panel--menu">
-                    <div class="card-header border-0 pb-0">
-                        <h4 class="card-title mb-0">Menu Cepat</h4>
-                    </div>
-                    <div class="card-body">
-                        <ul class="list-unstyled">
-                            <li class="mb-2">
-                                <a href="{{ route('assets.index') }}" class="btn dashboard-quick-link btn-sm w-100 text-start">
-                                    <i class="fas fa-box me-2"></i> Data Barang
-                                </a>
-                            </li>
-                            <li class="mb-2">
-                                <a href="{{ route('loans.create', ['fresh' => 1]) }}" class="btn dashboard-quick-link btn-sm w-100 text-start">
-                                    <i class="fas fa-handshake me-2"></i> Tambah Peminjaman
-                                </a>
-                            </li>
-                            <li class="mb-2">
-                                <a href="{{ route('users.index') }}" class="btn dashboard-quick-link btn-sm w-100 text-start">
-                                    <i class="fas fa-users me-2"></i> Manajemen User
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('settings.admin-menu') }}" class="btn dashboard-quick-link btn-sm w-100 text-start">
-                                    <i class="fas fa-shield-halved me-2"></i> Pengaturan Super Admin
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+                <section class="feature-row" aria-label="Keunggulan sistem">
+                    <div class="feature"><i class="fas fa-bullseye"></i><div><strong>Monitoring</strong><span>Real-time</span></div></div>
+                    <div class="feature"><i class="fas fa-chart-line"></i><div><strong>Evaluasi</strong><span>Terukur</span></div></div>
+                    <div class="feature"><i class="fas fa-shield-alt"></i><div><strong>Alert Dini</strong><span>Proaktif</span></div></div>
+                    <div class="feature"><i class="fas fa-headset"></i><div><strong>Keputusan</strong><span>Tepat & Cepat</span></div></div>
+                    <div class="feature"><i class="fas fa-trophy"></i><div><strong>Kinerja</strong><span>Optimal</span></div></div>
+                </section>
 
-            <div class="col-lg-6 col-xl-6 col-xxl-6 dashboard-main-col">
-                <div class="card dashboard-panel dashboard-panel--status">
-                    <div class="card-header d-sm-flex d-block pb-0 border-0">
-                        <div class="me-auto pe-3 mb-sm-0 mb-3">
-                            <h4 class="text-black fs-20 font-w600">Status Sistem</h4>
-                            <p class="fs-13 mb-0">Informasi terkini tentang sistem SARPRAS</p>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-12 mb-3 dashboard-status-col">
-                                <div class="d-flex justify-content-between align-items-center dashboard-system-item">
-                                    <div class="dashboard-system-item__head">
-                                        <span class="dashboard-system-item__icon dashboard-system-item__icon--green"><i class="fas fa-server"></i></span>
-                                        <span class="fs-14">Server Status</span>
-                                    </div>
-                                    <span class="badge bg-success">Online</span>
-                                </div>
-                            </div>
-                            <div class="col-12 mb-3 dashboard-status-col">
-                                <div class="d-flex justify-content-between align-items-center dashboard-system-item">
-                                    <div class="dashboard-system-item__head">
-                                        <span class="dashboard-system-item__icon dashboard-system-item__icon--blue"><i class="fas fa-database"></i></span>
-                                        <span class="fs-14">Database</span>
-                                    </div>
-                                    <span class="badge bg-success">Connected</span>
-                                </div>
-                            </div>
-                            <div class="col-12 mb-3 dashboard-status-col">
-                                <div class="d-flex justify-content-between align-items-center dashboard-system-item">
-                                    <div class="dashboard-system-item__head">
-                                        <span class="dashboard-system-item__icon dashboard-system-item__icon--amber"><i class="fas fa-clock"></i></span>
-                                        <span class="fs-14">Last Backup</span>
-                                    </div>
-                                    <span class="dashboard-system-value">{{ now()->format('d M Y H:i') }}</span>
-                                </div>
-                            </div>
-                            <div class="col-12 mb-3 dashboard-status-col">
-                                <div class="d-flex justify-content-between align-items-center dashboard-system-item">
-                                    <div class="dashboard-system-item__head">
-                                        <span class="dashboard-system-item__icon dashboard-system-item__icon--slate"><i class="fas fa-code-branch"></i></span>
-                                        <span class="fs-14">System Version</span>
-                                    </div>
-                                    <span class="dashboard-system-value">v1.0</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
-        </div>
-    </div>
+
+        <footer class="flow-footer">
+            SIMPATI PRIMA - Transparan, Akuntabel, Terintegrasi untuk Kinerja Anggaran yang Optimal
+        </footer>
+    </section>
 </main>
-@endsection
-
-@push('scripts')
 <script>
-    (function () {
-        const clockEl = document.getElementById('dashboardClock');
-        if (!clockEl) return;
+    document.querySelectorAll('.unit-marquee-window').forEach((windowEl) => {
+        let paused = false;
+        let last = performance.now();
 
-        const formatter = new Intl.DateTimeFormat('id-ID', {
-            weekday: 'long',
-            year: 'numeric',
-            month: 'long',
-            day: '2-digit',
-            hour: '2-digit',
-            minute: '2-digit',
-            second: '2-digit',
-            hour12: false,
-        });
+        const halfScroll = () => Math.max(0, windowEl.scrollHeight / 2);
 
-        const tick = () => {
-            clockEl.textContent = formatter.format(new Date()).replace('.', ':');
+        const tick = (now) => {
+            const delta = now - last;
+            last = now;
+
+            if (!paused && halfScroll() > windowEl.clientHeight) {
+                windowEl.scrollTop += delta * 0.012;
+
+                if (windowEl.scrollTop >= halfScroll()) {
+                    windowEl.scrollTop = 0;
+                }
+            }
+
+            requestAnimationFrame(tick);
         };
 
-        tick();
-        setInterval(tick, 1000);
-    })();
+        windowEl.addEventListener('mouseenter', () => { paused = true; });
+        windowEl.addEventListener('mouseleave', () => { paused = false; });
+        windowEl.addEventListener('focusin', () => { paused = true; });
+        windowEl.addEventListener('focusout', () => { paused = false; });
+        windowEl.addEventListener('wheel', () => {
+            paused = true;
+            clearTimeout(windowEl.dataset.resumeTimer);
+            windowEl.dataset.resumeTimer = setTimeout(() => { paused = false; }, 2500);
+        }, { passive: true });
 
-    (function () {
-        const viewport = document.getElementById('dashboardMembersViewport');
-        if (!viewport) return;
+        requestAnimationFrame(tick);
+    });
 
-        const navButtons = document.querySelectorAll('[data-members-nav]');
-
-        navButtons.forEach((button) => {
-            button.addEventListener('click', () => {
-                const dir = button.getAttribute('data-members-nav') === 'next' ? 1 : -1;
-                const scrollAmount = Math.max(260, Math.floor(viewport.clientWidth * 0.75));
-                viewport.scrollBy({ left: dir * scrollAmount, behavior: 'smooth' });
-            });
+    document.querySelectorAll('.status-toggle').forEach((button) => {
+        button.addEventListener('click', () => {
+            const box = button.closest('.status-box');
+            const isOpen = box.classList.toggle('is-open');
+            button.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
         });
-    })();
-
-    (function () {
-        const chartEl = document.getElementById('chartPetugasMonthlyLoan');
-        if (!chartEl || typeof ApexCharts === 'undefined') return;
-
-        const totalBadgeEl = document.getElementById('petugasMonthlyTotalBadge');
-        const countBadgeEl = document.getElementById('petugasMonthlyCountBadge');
-        const updatedBadgeEl = document.getElementById('petugasMonthlyUpdatedBadge');
-        const refreshBtnEl = document.getElementById('petugasMonthlyRefreshBtn');
-        const refreshToastEl = document.getElementById('petugasMonthlyToast');
-        const endpoint = chartEl.dataset.endpoint || '';
-        const refreshIntervalMs = 30000;
-
-        const idFormatter = new Intl.NumberFormat('id-ID');
-        const updatedAtFormatter = new Intl.DateTimeFormat('id-ID', {
-            day: '2-digit',
-            month: 'short',
-            year: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit',
-            second: '2-digit',
-            hour12: false,
-        });
-
-        let labels = [];
-        let series = [];
-        let refreshToastTimer = null;
-
-        try {
-            labels = JSON.parse(chartEl.dataset.labels || '[]');
-            series = JSON.parse(chartEl.dataset.series || '[]');
-        } catch (e) {
-            labels = [];
-            series = [];
-        }
-
-        if (!Array.isArray(labels) || !labels.length || !Array.isArray(series) || !series.length) return;
-
-        chartEl.innerHTML = '';
-
-        if (window.petugasMonthlyLoanChart && typeof window.petugasMonthlyLoanChart.destroy === 'function') {
-            window.petugasMonthlyLoanChart.destroy();
-        }
-
-        window.petugasMonthlyLoanChart = new ApexCharts(chartEl, {
-            series: series,
-            chart: {
-                type: 'bar',
-                height: 330,
-                stacked: false,
-                toolbar: { show: false },
-                zoom: { enabled: false }
-            },
-            plotOptions: {
-                bar: {
-                    horizontal: false,
-                    columnWidth: '52%',
-                    borderRadius: 4,
-                }
-            },
-            dataLabels: { enabled: false },
-            stroke: {
-                show: true,
-                width: 1,
-                colors: ['transparent']
-            },
-            xaxis: {
-                categories: labels,
-            },
-            yaxis: {
-                min: 0,
-                forceNiceScale: true,
-                labels: {
-                    formatter: function (val) { return Math.round(val); }
-                }
-            },
-            legend: {
-                position: 'top',
-                horizontalAlign: 'left'
-            },
-            tooltip: {
-                y: {
-                    formatter: function (val) {
-                        return val + ' ticket';
-                    }
-                }
-            },
-            grid: {
-                borderColor: '#e2e8f0',
-                strokeDashArray: 4,
-            }
-        });
-
-        window.petugasMonthlyLoanChart.render();
-
-        function applyBadgeTotals(payload) {
-            if (totalBadgeEl && typeof payload.grand_total === 'number') {
-                totalBadgeEl.textContent = 'Total: ' + idFormatter.format(payload.grand_total);
-            }
-
-            if (countBadgeEl && typeof payload.officer_count === 'number') {
-                countBadgeEl.textContent = 'Petugas tampil: ' + idFormatter.format(payload.officer_count);
-            }
-
-            if (updatedBadgeEl) {
-                if (payload.generated_at) {
-                    const generatedAtDate = new Date(payload.generated_at);
-                    if (!Number.isNaN(generatedAtDate.getTime())) {
-                        updatedBadgeEl.textContent = 'Update: ' + updatedAtFormatter.format(generatedAtDate).replace('.', ':');
-                    }
-                }
-            }
-        }
-
-        function isValidPayload(payload) {
-            return payload
-                && Array.isArray(payload.labels)
-                && Array.isArray(payload.series)
-                && payload.labels.length > 0
-                && payload.series.length > 0;
-        }
-
-        function showRefreshToast(message, type) {
-            if (!refreshToastEl) return;
-
-            refreshToastEl.textContent = message;
-            refreshToastEl.classList.remove('is-success', 'is-error', 'is-show');
-            refreshToastEl.classList.add(type === 'error' ? 'is-error' : 'is-success');
-
-            requestAnimationFrame(function () {
-                refreshToastEl.classList.add('is-show');
-            });
-
-            if (refreshToastTimer) {
-                clearTimeout(refreshToastTimer);
-            }
-
-            refreshToastTimer = setTimeout(function () {
-                refreshToastEl.classList.remove('is-show');
-            }, 2600);
-        }
-
-        async function refreshChartData(options) {
-            if (!endpoint) return;
-
-            const opts = Object.assign({
-                manual: false,
-                notify: false,
-            }, options || {});
-
-            if (refreshBtnEl && opts.manual) {
-                refreshBtnEl.disabled = true;
-                refreshBtnEl.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i> Memuat...';
-            }
-
-            try {
-                const response = await fetch(endpoint, {
-                    method: 'GET',
-                    headers: {
-                        'X-Requested-With': 'XMLHttpRequest',
-                        'Accept': 'application/json'
-                    },
-                    credentials: 'same-origin',
-                    cache: 'no-store'
-                });
-
-                if (!response.ok) {
-                    if (opts.notify) {
-                        showRefreshToast('Gagal memperbarui grafik. Coba lagi.', 'error');
-                    }
-                    return;
-                }
-
-                const payload = await response.json();
-                if (!isValidPayload(payload)) {
-                    if (opts.notify) {
-                        showRefreshToast('Data grafik tidak valid.', 'error');
-                    }
-                    return;
-                }
-
-                if (window.petugasMonthlyLoanChart && typeof window.petugasMonthlyLoanChart.updateOptions === 'function') {
-                    window.petugasMonthlyLoanChart.updateOptions({ xaxis: { categories: payload.labels } }, false, true);
-                }
-
-                if (window.petugasMonthlyLoanChart && typeof window.petugasMonthlyLoanChart.updateSeries === 'function') {
-                    window.petugasMonthlyLoanChart.updateSeries(payload.series, true);
-                }
-
-                applyBadgeTotals(payload);
-
-                if (opts.notify) {
-                    showRefreshToast('Grafik berhasil diperbarui.', 'success');
-                }
-            } catch (e) {
-                if (opts.notify) {
-                    showRefreshToast('Terjadi kendala saat memperbarui grafik.', 'error');
-                }
-            } finally {
-                if (refreshBtnEl && opts.manual) {
-                    refreshBtnEl.disabled = false;
-                    refreshBtnEl.innerHTML = '<i class="fas fa-rotate-right me-1"></i> Refresh';
-                }
-            }
-        }
-
-        let refreshTimer = null;
-
-        function startPolling() {
-            if (refreshTimer !== null) return;
-            refreshTimer = setInterval(refreshChartData, refreshIntervalMs);
-        }
-
-        function stopPolling() {
-            if (refreshTimer === null) return;
-            clearInterval(refreshTimer);
-            refreshTimer = null;
-        }
-
-        document.addEventListener('visibilitychange', function () {
-            if (document.hidden) {
-                stopPolling();
-            } else {
-                refreshChartData();
-                startPolling();
-            }
-        });
-
-        if (refreshBtnEl) {
-            refreshBtnEl.addEventListener('click', function () {
-                refreshChartData({ manual: true, notify: true });
-            });
-        }
-
-        refreshChartData();
-        startPolling();
-    })();
+    });
 </script>
-@endpush
+</body>
+</html>
