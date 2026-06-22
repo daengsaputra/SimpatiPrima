@@ -21,7 +21,7 @@
                     </div>
         
                     <div class="form-check form-switch mb-3">
-                        <input type="checkbox" class="form-check-input theme-choice" id="light-mode-switch" checked />
+                        <input type="checkbox" class="form-check-input theme-choice" id="light-mode-switch" />
                         <label class="form-check-label" for="light-mode-switch">Light Mode</label>
                     </div>
         
@@ -30,7 +30,7 @@
                     </div>
         
                     <div class="form-check form-switch mb-3">
-                        <input type="checkbox" class="form-check-input theme-choice" id="dark-mode-switch"  />
+                        <input type="checkbox" class="form-check-input theme-choice" id="dark-mode-switch" checked />
                         <label class="form-check-label" for="dark-mode-switch">Dark Mode</label>
                     </div>
         

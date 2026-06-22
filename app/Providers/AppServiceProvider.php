@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Throwable;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
 
         Paginator::useBootstrapFive();
 
-        if (Schema::hasTable('loans')) {
+        if ($this->tableExists('loans')) {
             View::composer('layouts.horizontal', function ($view) {
                 $overdueLoans = Loan::with('asset:id,name')
                     ->whereIn('status', ['borrowed', 'partial'])
@@ -54,7 +55,7 @@ class AppServiceProvider extends ServiceProvider
         }
 
         // Bagikan tema landing hanya jika tabel sudah tersedia.
-        if (Schema::hasTable('site_settings')) {
+        if ($this->tableExists('site_settings')) {
             $activeTheme = SiteSetting::landingTheme();
             $activeSurfaces = SiteSetting::landingThemeSurfaces();
             $activeHeroVariant = SiteSetting::dashboardHeroVariant();
@@ -70,6 +71,15 @@ class AppServiceProvider extends ServiceProvider
             View::share('rolePageAccessMap', $rolePageAccessMap);
             View::share('adminBroadcastMessage', $adminBroadcast);
             View::share('systemModeMeta', $systemModeMeta);
+        }
+    }
+
+    private function tableExists(string $table): bool
+    {
+        try {
+            return Schema::hasTable($table);
+        } catch (Throwable) {
+            return false;
         }
     }
 }

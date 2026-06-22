@@ -394,7 +394,7 @@
     </style>
     @stack('styles')
 </head>
-<body data-hero-variant="{{ $heroVariant }}">
+<body class="theme-dark" data-theme-version="dark" data-bs-theme="dark" data-hero-variant="{{ $heroVariant }}">
 <nav class="navbar landing-navbar navbar-expand-lg py-3">
     <div class="container">
         <a class="navbar-brand fw-semibold text-uppercase" href="{{ url('/') }}">SARPRAS PUSDATEKIN</a>
@@ -406,7 +406,7 @@
                 <li class="nav-item landing-nav-item-main"><a class="nav-link" href="#fitur">Fitur</a></li>
                 <li class="nav-item landing-nav-item-main"><a class="nav-link" href="{{ route('assets.loanable') }}">Data Barang</a></li>
                 <li class="nav-item landing-nav-item-toggle">
-                    <a class="nav-link bell dz-theme-mode landing-theme-toggle" id="landingThemeToggle" href="javascript:void(0);" aria-pressed="false" aria-label="Aktifkan mode gelap" title="Ganti mode">
+                    <a class="nav-link bell dz-theme-mode landing-theme-toggle active" id="landingThemeToggle" href="javascript:void(0);" aria-pressed="true" aria-label="Aktifkan mode terang" title="Mode terang">
                         <span id="icon-light" aria-hidden="true">
                             <svg viewBox="0 0 24 24" aria-hidden="true">
                                 <path d="M12 4a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0V5a1 1 0 0 1 1-1zm0 13a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm8-6a1 1 0 0 1 0 2h-1a1 1 0 1 1 0-2h1zM6 12a1 1 0 0 1-1 1H4a1 1 0 1 1 0-2h1a1 1 0 0 1 1 1zm10.95-5.536a1 1 0 0 1 1.414 0l.707.707a1 1 0 0 1-1.414 1.414l-.707-.707a1 1 0 0 1 0-1.414zM5.93 17.364a1 1 0 0 1 1.414 0l.707.707A1 1 0 0 1 6.637 19.485l-.707-.707a1 1 0 0 1 0-1.414zm12.142 1.414a1 1 0 0 1-1.414 0l-.707-.707a1 1 0 0 1 1.414-1.414l.707.707a1 1 0 0 1 0 1.414zM7.344 8.586a1 1 0 1 1-1.414-1.414l.707-.707a1 1 0 1 1 1.414 1.414l-.707.707z"/>
@@ -547,22 +547,14 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     (function () {
-        const THEME_KEY = 'sarpras-landing-theme';
+        const THEME_KEY = 'sarpras-theme';
         const themeToggle = document.getElementById('landingThemeToggle');
-
-        const getCookie = (name) => {
-            const value = `; ${document.cookie}`;
-            const parts = value.split(`; ${name}=`);
-            if (parts.length === 2) {
-                return parts.pop().split(';').shift();
-            }
-            return null;
-        };
 
         const setTheme = (theme) => {
             const isDark = theme === 'dark';
             document.body.classList.toggle('theme-dark', isDark);
             document.body.setAttribute('data-theme-version', isDark ? 'dark' : 'light');
+            document.body.setAttribute('data-bs-theme', isDark ? 'dark' : 'light');
             if (themeToggle) {
                 themeToggle.setAttribute('aria-pressed', isDark ? 'true' : 'false');
                 themeToggle.classList.toggle('active', isDark);
@@ -571,16 +563,13 @@
             }
         };
 
-        let initialTheme = 'light';
+        let initialTheme = 'dark';
         try {
             initialTheme = localStorage.getItem(THEME_KEY) || null;
         } catch (e) {
             initialTheme = null;
         }
-        if (!initialTheme) {
-            const cookieTheme = getCookie('version');
-            initialTheme = cookieTheme === 'dark' ? 'dark' : 'light';
-        }
+        initialTheme = initialTheme === 'light' ? 'light' : 'dark';
         setTheme(initialTheme);
 
         if (themeToggle) {

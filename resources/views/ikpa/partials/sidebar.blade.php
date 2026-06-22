@@ -17,33 +17,46 @@
 @endauth
 
 <aside class="flow-sidebar" aria-label="Menu SIMPATI PRIMA">
+    <a href="{{ route('dashboard') }}" class="ikpa-sidebar-logo" aria-label="Simpati Prima">
+        <img src="{{ asset('images/simpati-prima-logo.png') }}" alt="Simpati Prima">
+    </a>
+
+    <button class="ikpa-sidebar-toggle" type="button" data-ikpa-sidebar-toggle data-menu-label="Menu" aria-expanded="true" aria-label="Ciutkan sidebar">
+        <i class="fas fa-bars" aria-hidden="true"></i>
+        <span>Menu</span>
+    </button>
+
     <nav class="flow-nav" aria-label="Menu utama">
-        <a class="{{ $activeMenu === 'dashboard' ? 'active' : '' }}" href="{{ route('dashboard') }}">
+        <a class="{{ $activeMenu === 'dashboard' ? 'active' : '' }}" href="{{ route('dashboard') }}" data-menu-label="Dashboard">
             <i class="fas fa-th-large" aria-hidden="true"></i>
             <span>Dashboard</span>
         </a>
-        <a class="{{ $activeMenu === 'ikpa' ? 'active' : '' }}" href="{{ auth()->check() ? route('ikpa.input') : '#login-modal' }}">
+        <a class="{{ $activeMenu === 'ikpa' ? 'active' : '' }}" href="{{ auth()->check() ? route('ikpa.input') : '#login-modal' }}" data-menu-label="Input IKPA">
             <i class="fas fa-chart-bar" aria-hidden="true"></i>
             <span>Input IKPA</span>
         </a>
-        <a class="{{ $activeMenu === 'masterdata' ? 'active' : '' }}" href="{{ auth()->check() ? route('ikpa.masterdata') : '#login-modal' }}">
+        <a class="{{ $activeMenu === 'masterdata' ? 'active' : '' }}" href="{{ auth()->check() ? route('ikpa.masterdata') : '#login-modal' }}" data-menu-label="Master Data Unit">
             <i class="fas fa-database" aria-hidden="true"></i>
             <span>Master Data Unit</span>
         </a>
         @auth
             <form method="post" action="{{ route('logout') }}">
                 @csrf
-                <button type="submit">
+                <button type="submit" data-menu-label="Logout">
                     <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
                     <span>Logout</span>
                 </button>
             </form>
         @else
-            <a href="#login-modal">
+            <a href="#login-modal" data-menu-label="Login">
                 <i class="fas fa-sign-in-alt" aria-hidden="true"></i>
                 <span>Login</span>
             </a>
         @endauth
+        <button class="ikpa-theme-toggle" type="button" data-ikpa-theme-toggle data-menu-label="Ganti Tema" aria-pressed="true">
+            <i class="fas fa-sun" aria-hidden="true"></i>
+            <span data-theme-label>Mode Terang</span>
+        </button>
     </nav>
 
     <div class="flow-illustration" aria-hidden="true">

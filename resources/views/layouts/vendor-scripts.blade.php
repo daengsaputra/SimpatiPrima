@@ -9,5 +9,5 @@
 <script src="{{ asset('evanto/assets/vendor/apexcharts/dist/apexcharts.min.js') }}"></script>
 <script src="{{ asset('evanto/assets/vendor/i18n/i18n.js') }}"></script>
 <script src="{{ asset('evanto/assets/js/translator.js') }}"></script>
-<script src="{{ asset('evanto/assets/js/deznav-init.js') }}"></script>
-<script src="{{ asset('evanto/assets/js/custom.js') }}"></script>
+<script src="{{ asset('evanto/assets/js/deznav-init.js') }}?v={{ filemtime(public_path('evanto/assets/js/deznav-init.js')) }}"></script>
+<script src="{{ asset('evanto/assets/js/custom.js') }}?v={{ filemtime(public_path('evanto/assets/js/custom.js')) }}"></script>

@@ -20,8 +20,8 @@ Route::get('/auth/bpip/callback', [BpipSsoController::class, 'callback'])->name(
 // Override logout route - redirect to home page instead of login
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
-// Rute utama ke project Simpati Prima IKPA
-Route::redirect('/', '/ikpa')->name('root');
+// Rute utama ke dashboard awal
+Route::redirect('/', '/dashboard')->name('root');
 Route::get('/landing/video', [LandingMediaController::class, 'video'])->name('landing.video');
 Route::get('/ikpa', [IkpaController::class, 'index'])->name('ikpa.index');
 Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');

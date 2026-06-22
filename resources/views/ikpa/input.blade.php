@@ -419,8 +419,9 @@
         .actions button { width: 100%; }
     }
 </style>
+@include('ikpa.partials.theme')
 </head>
-<body>
+<body class="theme-dark" data-theme-version="dark" data-bs-theme="dark">
     @if (session('status') || session('status_error') || $errors->any())
         <div class="toast-wrap" role="status" aria-live="polite">
             @if (session('status'))
@@ -448,17 +449,10 @@
     <main class="content-body">
         <section class="ikpa-flow" aria-label="Input IKPA SIMPATI PRIMA">
             <header class="flow-hero">
-                <div class="flow-hero-logo">
-                    <img src="{{ asset('images/simpati-prima-logo.png') }}" alt="Simpati IKPA">
-                </div>
-                <div class="flow-brand" aria-label="Simpati Prima">
-                    <div class="flow-brand-mark"><i class="fas fa-chart-line"></i></div>
-                    <div>
-                        <strong>SIMPATI PRIMA</strong>
-                        <span>Sistem Informasi Monitoring dan Evaluasi Kinerja Pelaksanaan Anggaran</span>
-                    </div>
-                </div>
+                @include('ikpa.partials.header')
             </header>
+            @include('ikpa.partials.overview')
+            @include('ikpa.partials.running-notice')
 
             <div class="flow-body">
                 @include('ikpa.partials.sidebar', ['activeMenu' => 'ikpa'])
@@ -525,9 +519,6 @@
                 </div>
             </div>
 
-            <footer class="flow-footer">
-                SIMPATI PRIMA - Transparan, Akuntabel, Terintegrasi untuk Kinerja Anggaran yang Optimal
-            </footer>
         </section>
     </main>
 </body>

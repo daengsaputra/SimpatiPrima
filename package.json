@@ -4,7 +4,7 @@
     "scripts": {
         "dev": "vite",
         "build": "vite build",
-        "serve": "nodemon --watch app --watch routes --ext php --exec \"serve-dev.bat\""
+        "serve": "nodemon --watch app --watch routes --ext php --exec \"cmd /c serve-dev.bat\""
     },
     "devDependencies": {
         "@popperjs/core": "^2.11.6",

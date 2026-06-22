@@ -329,7 +329,7 @@
         padding-bottom: 16px;
         padding-right: 56px;
         border-bottom: 2px solid #e9eef4;
-        color: #09275a;
+        color: #d49800;
         font-size: 1.08rem;
         font-weight: 900;
         white-space: nowrap;
@@ -681,22 +681,16 @@
         .unit-marquee-window { height: auto; min-height: 0; overflow: visible; }
     }
 </style>
+@include('ikpa.partials.theme')
 </head>
 <body>
 <main class="content-body">
     <section class="ikpa-flow" aria-label="Dashboard SIMPATI PRIMA">
         <header class="flow-hero">
-            <div class="flow-hero-logo">
-                <img src="{{ asset('images/simpati-prima-logo.png') }}" alt="Simpati IKPA">
-            </div>
-            <div class="flow-brand" aria-label="Simpati Prima">
-                <div class="flow-brand-mark"><i class="fas fa-chart-line"></i></div>
-                <div>
-                    <strong>SIMPATI PRIMA</strong>
-                    <span>Sistem Informasi Monitoring dan Evaluasi Kinerja Pelaksanaan Anggaran</span>
-                </div>
-            </div>
+            @include('ikpa.partials.header')
         </header>
+        @include('ikpa.partials.overview')
+        @include('ikpa.partials.running-notice')
 
         <div class="flow-body">
             @include('ikpa.partials.sidebar', ['activeMenu' => 'dashboard'])
@@ -777,6 +771,7 @@
                                 'text' => 'Apresiasi atas pencapaian kinerja optimal',
                             ],
                         ] as $key => $meta)
+                            @php($groupCount = $groups[$key]->count())
                             <section class="status-box {{ $key }}">
                                 <div class="traffic {{ $key }}" aria-hidden="true">
                                     <span class="bulb red"></span>
@@ -785,7 +780,10 @@
                                 </div>
                                 <div class="status-title">
                                     <button class="status-toggle" type="button" aria-expanded="false">
-                                        <span>{{ $meta['title'] }}</span>
+                                        <span class="status-toggle-label">
+                                            <span>{{ $meta['title'] }}</span>
+                                            <span class="status-count-badge" aria-label="{{ $groupCount }} data">{{ $groupCount }}</span>
+                                        </span>
                                         <i class="fas fa-chevron-down" aria-hidden="true"></i>
                                     </button>
                                 </div>
@@ -817,9 +815,6 @@
             </div>
         </div>
 
-        <footer class="flow-footer">
-            SIMPATI PRIMA - Transparan, Akuntabel, Terintegrasi untuk Kinerja Anggaran yang Optimal
-        </footer>
     </section>
 </main>
 <script>

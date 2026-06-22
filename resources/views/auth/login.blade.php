@@ -9,8 +9,8 @@
             <div class="col-md-6 col-lg-5 mx-auto">
                 <div class="card p-4 shadow" style="max-width: 480px;">
                     <div class="text-center mb-3">
-                        <a href="{{ route('root') }}" class="brand-logo" aria-label="SARPRAS">
-                            <img src="{{ asset('evanto/assets/images/Logo Baju Pusdatin.png') }}" alt="logo" class="img-fluid" style="max-height:60px;" onerror="this.style.display='none'">
+                        <a href="{{ route('root') }}" class="brand-logo" aria-label="Simpati Prima">
+                            <img src="{{ asset('images/simpati-prima-logo.png') }}" alt="Simpati Prima" class="img-fluid" style="max-height:110px;" onerror="this.style.display='none'">
                         </a>
                     </div>
 

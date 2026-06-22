@@ -13,7 +13,7 @@
     @include('layouts.head-css')
 </head>
 
-<body data-layout="detached" data-topbar="colored">
+<body data-layout="detached" data-topbar="colored" data-theme-version="dark" data-bs-theme="dark">
     <!-- Begin page -->
     <div class="container-fluid">
         <div id="layout-wrapper">

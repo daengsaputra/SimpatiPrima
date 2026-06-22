@@ -89,6 +89,79 @@ body,
     --dz-header-height: 3.5rem;
 }
 
+.nav-header .brand-logo.sarpras-brand-logo {
+    justify-content: flex-start;
+    padding-left: 1rem;
+    padding-right: 0.75rem;
+}
+
+.sarpras-brand-logo__image {
+    display: block;
+    width: min(13.5rem, 100%);
+    max-height: 3rem;
+    object-fit: contain;
+    object-position: left center;
+}
+
+@media (min-width: 992px) {
+    #main-wrapper:not(.menu-toggle) .sarpras-brand-logo__image {
+        width: min(15.75rem, 100%);
+    }
+
+    #main-wrapper.menu-toggle .nav-header .brand-logo.sarpras-brand-logo {
+        justify-content: center;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+
+    #main-wrapper.menu-toggle .sarpras-brand-logo__image {
+        max-width: 3.2rem;
+        max-height: 2.5rem;
+    }
+}
+
+.sarpras-sidebar-logo {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 1rem 1rem 0.65rem;
+    margin-bottom: 0.25rem;
+}
+
+.sarpras-sidebar-logo img {
+    display: block;
+    width: min(15.25rem, 100%);
+    max-height: 5.25rem;
+    object-fit: contain;
+    object-position: left center;
+}
+
+@media (min-width: 992px) {
+    #main-wrapper.menu-toggle .sarpras-sidebar-logo {
+        justify-content: center;
+        padding: 0.8rem 0.4rem 0.6rem;
+    }
+
+    #main-wrapper.menu-toggle .sarpras-sidebar-logo img {
+        max-width: 3.3rem;
+        max-height: 2.5rem;
+        object-position: center;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    body[data-sidebar-style="mini"] .sarpras-sidebar-logo {
+        justify-content: center;
+        padding: 0.75rem 0.35rem 0.55rem;
+    }
+
+    body[data-sidebar-style="mini"] .sarpras-sidebar-logo img {
+        max-width: 3.2rem;
+        max-height: 2.4rem;
+        object-position: center;
+    }
+}
+
 /* Header content alignment */
 .header .header-content {
     /* Reserve space for hamburger/nav-control so page title does not overlap it */

@@ -16,61 +16,69 @@ var Gymove = function(){
 
 	var handleThemeMode = function () {
 		if (jQuery(".dz-theme-mode").length > 0) {
+			var themeStorageKey = 'sarpras-theme';
 
-			// Toggle button click
-			jQuery('.dz-theme-mode').on('click', function () {
-				jQuery(this).toggleClass('active');
+			var getStoredTheme = function () {
+				try {
+					return localStorage.getItem(themeStorageKey);
+				} catch (e) {
+					return null;
+				}
+			};
 
-				var mode = jQuery(this).hasClass('active') ? 'dark' : 'light';
+			var setStoredTheme = function (mode) {
+				try {
+					localStorage.setItem(themeStorageKey, mode);
+				} catch (e) {
+					/* Ignore storage failures. */
+				}
+			};
 
+			var updateThemeToggleState = function (mode) {
+				var isDark = mode === 'dark';
+				jQuery('.dz-theme-mode')
+					.toggleClass('active', isDark)
+					.attr('aria-pressed', isDark ? 'true' : 'false')
+					.attr('aria-label', isDark ? 'Aktifkan mode terang' : 'Aktifkan mode gelap')
+					.attr('title', isDark ? 'Mode terang' : 'Mode gelap');
+			};
+
+			var applyThemeMode = function (mode) {
 				jQuery('body')
 					.attr('data-bs-theme', mode)
 					.attr('data-theme-version', mode);
 
 				setCookie('version', mode);
-				jQuery('#theme_version').val(mode).selectpicker('refresh');
+				setStoredTheme(mode);
+				updateThemeToggleState(mode);
 
-				$('.default-select').selectpicker('refresh');
+				if (jQuery('#theme_version').length) {
+					jQuery('#theme_version').val(mode).selectpicker('refresh');
+				}
+
+				if (jQuery('.default-select').length) {
+					jQuery('.default-select').selectpicker('refresh');
+				}
+			};
+
+			// Toggle button click
+			jQuery('.dz-theme-mode').on('click', function () {
+				var mode = jQuery('body').attr('data-theme-version') === 'dark' ? 'light' : 'dark';
+				applyThemeMode(mode);
 			});
 
 			// Initial load: set body attributes based on cookie or select
-			var version = getCookie('version') || jQuery('#theme_version').val() || 'light';
-
-			jQuery('body')
-				.attr('data-bs-theme', version)
-				.attr('data-theme-version', version);
-
-			jQuery('.dz-theme-mode').removeClass('active');
-
-			setTimeout(function () {
-				if (version === "dark") {
-					jQuery('.dz-theme-mode').addClass('active');
-				}
-			}, 1500);
+			var storedTheme = getStoredTheme();
+			var selectTheme = jQuery('#theme_version').length ? jQuery('#theme_version').val() : null;
+			var version = storedTheme || selectTheme || jQuery('body').attr('data-theme-version') || 'dark';
+			version = version === 'light' ? 'light' : 'dark';
+			applyThemeMode(version);
 
 			// When the select changes
 			jQuery('#theme_version').on('change', function () {
 				var selectedVersion = jQuery(this).val();
-
-				jQuery('body')
-					.attr('data-bs-theme', selectedVersion)
-					.attr('data-theme-version', selectedVersion);
-
-				setCookie('version', selectedVersion);
-
-				if (selectedVersion === 'dark') {
-					jQuery('.dz-theme-mode').addClass('active');
-				} else {
-					jQuery('.dz-theme-mode').removeClass('active');
-				}
-
-				$('.default-select').selectpicker('refresh');
+				applyThemeMode(selectedVersion === 'light' ? 'light' : 'dark');
 			});
-
-			// On page load: apply active state if select is 'dark'
-			if (jQuery('#theme_version').val() === 'dark') {
-				jQuery('.dz-theme-mode').addClass('active');
-			}
 		}
 	};
 	

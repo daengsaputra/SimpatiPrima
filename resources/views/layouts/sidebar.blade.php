@@ -27,6 +27,11 @@
                 return (bool) ($roleAccessMap[$key][$currentRole] ?? true);
             };
         @endphp
+
+        <a href="{{ route('dashboard') }}" class="sarpras-sidebar-logo" aria-label="Simpati Prima">
+            <img src="{{ asset('images/simpati-prima-logo.png') }}" alt="Simpati Prima">
+        </a>
+
         <ul class="metismenu sarpras-menu-list" id="menu">
             <li class="menu-title sarpras-menu-title">UTAMA</li>
             <li class="{{ request()->routeIs('dashboard') || request()->routeIs('home') ? 'mm-active' : '' }}">

@@ -1,7 +1,6 @@
 <div class="nav-header">
-    <a href="{{ route('dashboard') }}" class="brand-logo" aria-label="SARPRAS">
-        <img class="logo-abbr" src="{{ asset('evanto/assets/images/camera.svg') }}" alt="logo-abbr">
-        <img class="brand-title" src="{{ asset('evanto/assets/images/Logo Baju Pusdatin.png') }}" alt="logo-title">
+    <a href="{{ route('dashboard') }}" class="brand-logo sarpras-brand-logo" aria-label="Simpati Prima">
+        <img src="{{ asset('images/simpati-prima-logo.png') }}" alt="Simpati Prima" class="sarpras-brand-logo__image">
     </a>
 
     <div class="nav-control">
@@ -71,7 +70,7 @@
                     </li>
                     <!-- theme mode toggle -->
                     <li class="nav-item dropdown notification_dropdown">
-                        <a class="nav-link bell dz-theme-mode" href="javascript:void(0);" aria-label="theme-mode">
+                        <a class="nav-link bell dz-theme-mode" href="javascript:void(0);" role="button" aria-pressed="true" aria-label="Aktifkan mode terang" title="Ganti tema">
                             <i id="icon-light" class="fas fa-sun"></i>
                             <i id="icon-dark" class="fas fa-moon"></i>
                         </a>
@@ -125,4 +124,3 @@
         </nav>
     </div>
 </header>
-

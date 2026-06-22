@@ -6,7 +6,7 @@ var html = $('html');
 function dzSettings({language, typography, version, layout, navheaderBg, headerBg, sidebarStyle, sidebarBg, sidebarPosition, headerPosition, containerLayout, direction, primary}) {
     this.language = language || "en_GB";
     this.typography = typography || "poppins";
-    this.version = version || "light";
+    this.version = version || "dark";
     this.layout = layout || "vertical";
     this.navheaderBg = navheaderBg || "color_1";
     this.headerBg = headerBg || "color_1";
@@ -84,8 +84,8 @@ dzSettings.prototype.manageVersion = function() {
             body.attr("data-theme-version", "transparent");
             break;
         default: 
-            body.attr("data-theme-version", "light");
-            body.attr("data-bs-theme", "light");
+            body.attr("data-theme-version", "dark");
+            body.attr("data-bs-theme", "dark");
     }
 }
 dzSettings.prototype.manageTypography = function() {
@@ -408,7 +408,7 @@ function getUrlParams(dParam){
 	"use strict"
 	
 	var direction = getCookie('direction') || getUrlParams('dir') || 'ltr';
-    var savedVersion = getCookie('version') || getUrlParams('theme_version') || body.attr('data-theme-version') || 'light';
+    var savedVersion = getUrlParams('theme_version') || body.attr('data-theme-version') || 'dark';
 	
 	dzSettingsOptions = {
 		language: "en_GB",
@@ -464,7 +464,7 @@ function getUrlParams(dParam){
 	});
 	
 	jQuery(window).on('resize',function(){
-        dzSettingsOptions.version = body.attr('data-theme-version') || dzSettingsOptions.version || 'light';
+        dzSettingsOptions.version = body.attr('data-theme-version') || dzSettingsOptions.version || 'dark';
 		dzSettingsOptions.containerLayout = $('#container_layout').val();
         new dzSettings(dzSettingsOptions);
         setCookie('version', dzSettingsOptions.version);
