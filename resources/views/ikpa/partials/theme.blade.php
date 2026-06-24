@@ -639,18 +639,20 @@
     }
 
     .ikpa-overview-count {
-        position: absolute;
-        top: 10px;
-        right: 62px;
+        position: static;
         min-width: 30px;
         height: 30px;
-        display: grid;
+        display: inline-grid;
         place-items: center;
+        vertical-align: middle;
+        margin-left: 8px;
+        padding: 0 9px;
         border-radius: 999px;
         background: #fff;
         color: #0f172a;
         font-size: .95rem;
         font-weight: 1000;
+        line-height: 1;
         box-shadow: 0 10px 18px rgba(2, 6, 23, .28);
     }
 
@@ -721,53 +723,59 @@
 
     .ikpa-gauge {
         --angle: calc((var(--score) * 1.8deg) - 90deg);
+        --hub-size: 46px;
+        --hub-bottom: 10px;
+        --needle-pivot: calc(var(--hub-bottom) + (var(--hub-size) / 2));
         margin-top: 40px;
-        width: min(330px, 100%);
-        aspect-ratio: 1 / .64;
+        width: min(340px, 100%);
+        aspect-ratio: 1 / .68;
         display: grid;
         align-items: center;
         justify-items: center;
-        filter: drop-shadow(0 24px 28px rgba(0, 0, 0, .34));
+        filter: drop-shadow(0 22px 30px rgba(0, 0, 0, .36));
     }
 
     .ikpa-gauge__dial {
         position: relative;
         width: 100%;
-        aspect-ratio: 2 / 1.04;
+        aspect-ratio: 2 / 1.12;
         overflow: hidden;
-        border-radius: 999px 999px 24px 24px;
+        border-radius: 999px 999px 26px 26px;
         background:
-            radial-gradient(circle at 50% 100%, rgba(14, 165, 233, .3) 0 8%, transparent 9%),
-            radial-gradient(circle at 50% 100%, transparent 0 50%, rgba(59, 130, 246, .26) 51% 52%, transparent 53%),
+            radial-gradient(circle at 50% 100%, rgba(14, 165, 233, .34) 0 7%, transparent 8%),
             conic-gradient(from 270deg at 50% 100%,
-                #ff1648 0deg 48deg,
-                #ffcf38 48deg 104deg,
-                #19e9aa 104deg 180deg,
+                #ff1648 0deg,
+                #ff2c37 22deg,
+                #ff7a1c 48deg,
+                #ffdc38 82deg,
+                #87eb62 116deg,
+                #21e7b9 148deg,
+                #178fc2 180deg,
                 transparent 180deg);
-        background-color: #041632;
-        border: 1px solid rgba(56, 189, 248, .18);
+        background-color: #041538;
+        border: 0;
         box-shadow:
-            inset 0 -46px 70px rgba(0, 0, 0, .46),
+            inset 0 -50px 74px rgba(0, 0, 0, .5),
             inset 0 1px 0 rgba(255, 255, 255, .08),
-            0 0 34px rgba(14, 165, 233, .22);
+            0 0 36px rgba(14, 165, 233, .24);
     }
 
     .ikpa-gauge__dial:after {
         content: "";
         position: absolute;
-        left: 11%;
-        right: 11%;
-        bottom: -2px;
-        height: 68%;
+        left: 10%;
+        right: 10%;
+        bottom: 0;
+        height: 82%;
         z-index: 1;
-        border: 2px solid rgba(56, 189, 248, .12);
-        border-bottom: 0;
+        border: 0;
         border-radius: 999px 999px 0 0;
         background:
-            radial-gradient(circle at 50% 91%, rgba(0, 183, 255, .18), transparent 28%),
-            radial-gradient(circle at 50% 86%, rgba(2, 6, 23, .96) 0 37%, transparent 38%),
-            linear-gradient(180deg, rgba(3, 24, 64, .86), rgba(2, 10, 30, .97));
-        box-shadow: inset 0 18px 34px rgba(0, 0, 0, .34);
+            radial-gradient(circle at 50% 92%, rgba(0, 183, 255, .18), transparent 20%),
+            linear-gradient(180deg, #061b44 0%, #03102d 72%, #020b22 100%);
+        box-shadow:
+            inset 0 18px 36px rgba(0, 0, 0, .34),
+            0 -8px 26px rgba(3, 16, 45, .7);
     }
 
     .ikpa-gauge__ticks {
@@ -777,24 +785,24 @@
         border-radius: 999px 999px 0 0;
         background:
             repeating-conic-gradient(from 270deg at 50% 100%,
-                rgba(255, 255, 255, .95) 0deg 1.7deg,
-                transparent 1.7deg 7deg);
-        -webkit-mask-image: radial-gradient(circle at 50% 100%, transparent 0 68%, #000 69% 74%, transparent 75%);
-        mask-image: radial-gradient(circle at 50% 100%, transparent 0 68%, #000 69% 74%, transparent 75%);
-        opacity: .42;
+                rgba(255, 213, 86, .42) 0deg 1.4deg,
+                transparent 1.4deg 10deg);
+        -webkit-mask-image: radial-gradient(circle at 50% 100%, transparent 0 64%, #000 65% 68%, transparent 69%);
+        mask-image: radial-gradient(circle at 50% 100%, transparent 0 64%, #000 65% 68%, transparent 69%);
+        opacity: .55;
     }
 
     .ikpa-gauge__needle {
         position: absolute;
         left: 50%;
-        bottom: 12px;
+        bottom: var(--needle-pivot);
         z-index: 4;
-        width: 18px;
-        height: 76%;
-        clip-path: polygon(50% 0, 88% 100%, 12% 100%);
+        width: 14px;
+        height: 64%;
+        clip-path: polygon(50% 0, 82% 100%, 18% 100%);
         border-radius: 999px;
-        background: linear-gradient(90deg, #f7fbff 0%, #d9ecff 58%, #99d5ff 100%);
-        box-shadow: 0 0 20px rgba(148, 221, 255, .5);
+        background: linear-gradient(90deg, #ffffff 0%, #e7f4ff 58%, #a9d9ff 100%);
+        box-shadow: 0 0 18px rgba(221, 242, 255, .58);
         transform-origin: 50% 100%;
         transform: translateX(-50%) rotate(var(--angle));
     }
@@ -802,40 +810,25 @@
     .ikpa-gauge__hub {
         position: absolute;
         left: 50%;
-        bottom: 2px;
+        bottom: var(--hub-bottom);
         z-index: 5;
-        width: 48px;
-        height: 48px;
-        border: 8px solid #d9f0ff;
+        width: var(--hub-size);
+        height: var(--hub-size);
+        border: 8px solid #dff4ff;
         border-radius: 999px;
-        background: #13bfff;
-        box-shadow: 0 0 22px rgba(56, 189, 248, .72);
+        background: #20bfff;
+        box-shadow:
+            0 0 0 5px rgba(14, 165, 233, .2),
+            0 0 24px rgba(56, 189, 248, .9);
         transform: translateX(-50%);
     }
 
     .ikpa-gauge__dial strong {
-        position: absolute;
-        left: 50%;
-        bottom: 48px;
-        z-index: 6;
-        transform: translateX(-50%);
-        color: #fff;
-        font-size: 1.05rem;
-        font-weight: 1000;
-        line-height: 1;
-        text-shadow: 0 3px 12px rgba(0, 0, 0, .42);
+        display: none;
     }
 
     .ikpa-gauge__dial small {
-        position: absolute;
-        left: 50%;
-        bottom: 29px;
-        z-index: 6;
-        transform: translateX(-50%);
-        color: rgba(226, 232, 240, .72);
-        font-size: .7rem;
-        font-weight: 800;
-        white-space: nowrap;
+        display: none;
     }
 
     .ikpa-overview-points {
@@ -883,79 +876,137 @@
 
     .ikpa-chart-lines {
         position: relative;
-        height: 166px;
+        height: 178px;
         margin-top: 40px;
         overflow: hidden;
         padding: 0;
         border: 0;
         border-radius: 0;
         background:
-            radial-gradient(circle at 84% 18%, rgba(255, 217, 94, .16), transparent 15%),
+            radial-gradient(circle at 82% 10%, rgba(251, 191, 36, .26), transparent 16%),
+            radial-gradient(circle at 46% 18%, rgba(14, 165, 233, .26), transparent 22%),
+            radial-gradient(circle at 14% 42%, rgba(99, 102, 241, .16), transparent 18%),
             linear-gradient(180deg, rgba(14, 165, 233, .04), rgba(14, 165, 233, 0));
     }
 
     .ikpa-chart-lines:before {
         content: "";
         position: absolute;
-        inset: 18px 0 6px;
-        z-index: 1;
+        left: 17%;
+        right: 6%;
+        bottom: 9px;
+        z-index: 2;
+        height: 1px;
         background:
-            linear-gradient(180deg, rgba(0, 133, 255, .48), rgba(0, 78, 255, .2) 58%, rgba(0, 78, 255, 0) 100%);
-        clip-path: polygon(0 76%, 8% 68%, 17% 48%, 27% 42%, 36% 62%, 47% 75%, 57% 61%, 68% 43%, 80% 58%, 91% 66%, 100% 50%, 100% 100%, 0 100%);
-        filter: blur(.2px);
+            linear-gradient(90deg, rgba(56, 189, 248, 0), rgba(56, 189, 248, .22), rgba(250, 204, 21, .24), rgba(56, 189, 248, 0));
     }
 
     .ikpa-chart-lines:after {
         content: "";
         position: absolute;
-        left: 68%;
+        left: 68.4%;
         top: 28px;
-        bottom: 13px;
+        bottom: 10px;
         z-index: 2;
         width: 1px;
-        background: linear-gradient(180deg, rgba(56, 189, 248, 0), rgba(56, 189, 248, .38), rgba(56, 189, 248, 0));
+        background: linear-gradient(180deg, rgba(56, 189, 248, 0), rgba(96, 165, 250, .34), rgba(56, 189, 248, 0));
     }
 
-    .ikpa-chart-lines .chart-line {
-        position: absolute;
-        inset: 12px 0 16px;
+    .ikpa-performance-svg {
+        position: relative;
         z-index: 3;
-        border-radius: 999px;
-        opacity: .96;
-        filter: drop-shadow(0 0 5px currentColor) drop-shadow(0 0 14px currentColor);
+        display: block;
+        width: 100%;
+        height: 100%;
+        overflow: visible;
     }
 
-    .ikpa-chart-lines .chart-line.teal {
-        color: #11cfff;
-        clip-path: polygon(0 70%, 7% 64%, 14% 48%, 22% 35%, 30% 28%, 39% 42%, 48% 68%, 56% 74%, 65% 62%, 75% 42%, 85% 58%, 93% 66%, 100% 50%, 100% 53%, 93% 69%, 85% 61%, 75% 45%, 65% 65%, 56% 77%, 48% 71%, 39% 45%, 30% 31%, 22% 38%, 14% 51%, 7% 67%, 0 73%);
-        background: currentColor;
+    .ikpa-performance-svg .ikpa-area {
+        opacity: .95;
     }
 
-    .ikpa-chart-lines .chart-line.coral {
-        color: #ffd35a;
-        clip-path: polygon(0 88%, 8% 74%, 17% 68%, 25% 70%, 34% 62%, 43% 40%, 52% 26%, 62% 44%, 71% 26%, 81% 12%, 90% 38%, 96% 16%, 100% 18%, 100% 21%, 96% 19%, 90% 41%, 81% 15%, 71% 29%, 62% 47%, 52% 29%, 43% 43%, 34% 65%, 25% 73%, 17% 71%, 8% 77%, 0 91%);
-        background: currentColor;
+    .ikpa-performance-svg .ikpa-area.blue {
+        fill: url(#ikpa-area-blue);
     }
 
-    .ikpa-chart-lines .chart-line.teal:after,
-    .ikpa-chart-lines .chart-line.coral:after {
-        content: "";
-        position: absolute;
-        width: 11px;
-        height: 11px;
-        border-radius: 999px;
-        background: currentColor;
-        box-shadow: 0 0 0 4px rgba(255, 255, 255, .08), 0 0 18px currentColor;
+    .ikpa-performance-svg .ikpa-area.gold {
+        fill: url(#ikpa-area-gold);
+        opacity: .7;
     }
 
-    .ikpa-chart-lines .chart-line.teal:after {
-        left: 21%;
-        top: 27%;
+    .ikpa-performance-svg .ikpa-area.violet {
+        fill: rgba(67, 56, 202, .2);
     }
 
-    .ikpa-chart-lines .chart-line.coral:after {
-        left: 70%;
-        top: 20%;
+    .ikpa-performance-svg .ikpa-line {
+        fill: none;
+        stroke-width: 4;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        filter: url(#ikpa-chart-glow);
+    }
+
+    .ikpa-performance-svg .ikpa-line.cyan {
+        stroke: url(#ikpa-line-cyan);
+    }
+
+    .ikpa-performance-svg .ikpa-line.gold {
+        stroke: url(#ikpa-line-gold);
+    }
+
+    .ikpa-performance-svg .ikpa-line.violet {
+        stroke: #4f46e5;
+        stroke-width: 3;
+        opacity: .78;
+    }
+
+    .ikpa-performance-svg .ikpa-chart-points circle {
+        stroke: rgba(255, 255, 255, .82);
+        stroke-width: 2.5;
+        filter: url(#ikpa-dot-glow);
+    }
+
+    .ikpa-performance-svg .ikpa-chart-points .cyan {
+        fill: #22d3ee;
+    }
+
+    .ikpa-performance-svg .ikpa-chart-points .gold {
+        fill: #fbbf24;
+    }
+
+    .ikpa-performance-svg .ikpa-chart-points .violet {
+        fill: #818cf8;
+    }
+
+    .ikpa-performance-svg .ikpa-chart-points .pulse-cyan,
+    .ikpa-performance-svg .ikpa-chart-points .pulse-gold,
+    .ikpa-performance-svg .ikpa-chart-points .pulse-violet {
+        fill: none;
+        stroke-width: 2;
+        filter: none;
+        transform-box: fill-box;
+        transform-origin: center;
+        animation: ikpa-chart-pulse 2.8s ease-out infinite;
+    }
+
+    .ikpa-performance-svg .ikpa-chart-points .pulse-cyan {
+        stroke: #22d3ee;
+        animation-delay: 0s;
+    }
+
+    .ikpa-performance-svg .ikpa-chart-points .pulse-gold {
+        stroke: #fbbf24;
+        animation-delay: .94s;
+    }
+
+    .ikpa-performance-svg .ikpa-chart-points .pulse-violet {
+        stroke: #818cf8;
+        animation-delay: 1.88s;
+    }
+
+    @keyframes ikpa-chart-pulse {
+        0% { transform: scale(1); opacity: .86; }
+        100% { transform: scale(4); opacity: 0; }
     }
 
     .chart-y-label {
@@ -1046,10 +1097,6 @@
             height: 76px;
             gap: 5px;
             padding: 6px 7px;
-        }
-
-        .ikpa-overview-count {
-            right: 58px;
         }
 
         .ikpa-overview-meter {
@@ -1427,6 +1474,7 @@
         display: inline-flex;
         align-items: center;
         gap: 10px;
+        flex: 1 1 auto;
     }
 
     .status-count-badge {

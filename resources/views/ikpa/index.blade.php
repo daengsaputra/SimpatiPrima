@@ -737,8 +737,8 @@
                                     <button class="status-toggle" type="button" aria-expanded="false">
                                         <span class="status-toggle-label">
                                             <span>{{ $meta['title'] }}</span>
-                                            <span class="status-count-badge" aria-label="{{ $groupCount }} data">{{ $groupCount }}</span>
                                         </span>
+                                        <span class="status-count-badge" aria-label="{{ $groupCount }} data">{{ $groupCount }}</span>
                                         <i class="fas fa-chevron-down" aria-hidden="true"></i>
                                     </button>
                                 </div>
