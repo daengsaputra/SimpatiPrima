@@ -87,7 +87,7 @@
   <section class="reports-hero">
     <div>
       <div class="reports-hero__title">Laporan Peminjaman & Pengembalian</div>
-      <div class="reports-hero__subtitle">Ringkasan transaksi sarpras dengan filter periode dan ekspor cepat.</div>
+      <div class="reports-hero__subtitle">Ringkasan transaksi peminjaman dengan filter periode dan ekspor cepat.</div>
       <div class="reports-hero__cta">
         <div class="dropdown">
           <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">

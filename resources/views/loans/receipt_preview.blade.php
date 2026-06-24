@@ -385,7 +385,7 @@
         <span class="receipt-badge">Dokumen Resmi</span>
         <h1>Bukti Peminjaman Barang</h1>
         <span>Kode Pinjam: <strong>{{ $batch }}</strong></span>
-        <small>SARPRAS PUSDATEKIN BPIP</small>
+        <small>SIMPATI PRIMA</small>
       </div>
     </div>
     <div class="receipt-preview__toolbar-actions">

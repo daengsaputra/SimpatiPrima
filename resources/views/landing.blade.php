@@ -1,7 +1,7 @@
 @extends('layouts.landing')
 
 @php
-    $title = 'SARPRAS PUSDATEKIN - Sarana Prasarana BPIP';
+    $title = 'SIMPATI PRIMA - Sarana Prasarana BPIP';
     $summaryData = $summaryData ?? ($summary ?? []);
     $availableAssets = $availableAssets ?? [];
     $activeLoans = $activeLoans ?? [];
@@ -744,13 +744,13 @@
 @section('content')
   <div class="hero-grid mb-5">
     <div>
-      <h1 class="hero-heading mt-3">Sarpras Pusdatekin BPIP</h1>
+      <h1 class="hero-heading mt-3">Simpati Prima</h1>
       <p class="hero-subtext mt-3">
         Kelola kebutuhan sarana prasarana dengan cepat dan terarah. Pantau ketersediaan, ajukan peminjaman,
         dan dukung setiap kegiatan dengan fasilitas yang selalu siap digunakan.
       </p>
       <div class="d-flex flex-wrap gap-3 mt-4">
-        <a class="btn btn-lg btn-primary px-4" href="{{ route('assets.loanable') }}">Lihat Koleksi Sarpras</a>
+        <a class="btn btn-lg btn-primary px-4" href="{{ route('assets.loanable') }}">Lihat Koleksi Barang</a>
         <button class="btn btn-lg btn-outline-primary px-4" data-bs-toggle="modal" data-bs-target="#loginModal">Masuk Dashboard</button>
       </div>
     </div>
@@ -778,7 +778,7 @@
     <div class="col-lg-6">
       <div class="section-panel">
         <div class="section-header">
-          <h5 class="mb-0">Sarpras Tersedia</h5>
+          <h5 class="mb-0">Barang Tersedia</h5>
           <span class="badge badge-accent rounded-pill">{{ number_format(data_get($summaryData, 'available', 0)) }} unit</span>
         </div>
         <div class="scroll-list">
@@ -802,7 +802,7 @@
               @endif
             </div>
           @empty
-            <p class="text-muted mb-0">Belum ada sarpras siap pinjam untuk ditampilkan.</p>
+            <p class="text-muted mb-0">Belum ada barang siap pinjam untuk ditampilkan.</p>
           @endforelse
         </div>
       </div>
@@ -884,7 +884,7 @@
         <rect x="4.5" y="4.5" width="2.5" height="2.5" rx="0.6" fill="currentColor" opacity="0.55" stroke="none"/>
         <rect x="17" y="12.5" width="2.5" height="2.5" rx="0.6" fill="currentColor" opacity="0.55" stroke="none"/>
       </svg>
-      <h5 class="feature-title mb-1">Inventaris Sarpras Terpusat</h5>
+      <h5 class="feature-title mb-1">Inventaris Terpusat</h5>
       <p class="feature-desc mb-0">Seluruh perangkat tercatat rapi dan mudah dipantau dari satu sistem.</p>
     </div>
     <div class="feature-card">
@@ -904,7 +904,7 @@
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" d="M5.5 8.5l4-3 3.5 2 4.5-3"/>
       </svg>
       <h5 class="feature-title mb-1">Analitik Real-time</h5>
-      <p class="feature-desc mb-0">Laporan pemakaian sarpras membantu pengambilan keputusan yang cepat.</p>
+      <p class="feature-desc mb-0">Laporan pemakaian barang membantu pengambilan keputusan yang cepat.</p>
     </div>
   </div>
 
@@ -914,7 +914,7 @@
       <div class="modal-content">
         <div class="modal-header border-0 position-relative text-center py-0" style="flex-direction: column;">
           <button type="button" class="btn-close position-absolute end-0 top-0" data-bs-dismiss="modal" aria-label="Close" style="margin: 1.5rem;"></button>
-          <img src="{{ asset('evanto/assets/images/Logo Baju Pusdatin.png') }}" alt="SARPRAS" class="img-fluid" style="max-height:60px;" onerror="this.style.display='none'">
+          <img src="{{ asset('evanto/assets/images/Logo Baju Pusdatin.png') }}" alt="Simpati Prima" class="img-fluid" style="max-height:60px;" onerror="this.style.display='none'">
           <h5 class="modal-title" id="loginModalLabel">Masuk Dashboard</h5>
         </div>
         <div class="modal-body">
@@ -944,7 +944,7 @@
             </div>
           @endif
 
-          <form method="POST" action="{{ route('login') }}" class="sarpras-login-form">
+          <form method="POST" action="{{ route('login') }}" class="simpati-prima-login-form">
             @csrf
 
             <div class="form-group mb-3">
@@ -998,7 +998,7 @@
       <div class="modal-content">
         <div class="modal-header border-0 position-relative text-center py-0" style="flex-direction: column;">
           <button type="button" class="btn-close position-absolute end-0 top-0" data-bs-dismiss="modal" aria-label="Close" style="margin: 1.5rem;"></button>
-          <img src="{{ asset('evanto/assets/images/Logo Baju Pusdatin.png') }}" alt="SARPRAS" class="img-fluid" style="max-height:60px;" onerror="this.style.display='none'">
+          <img src="{{ asset('evanto/assets/images/Logo Baju Pusdatin.png') }}" alt="Simpati Prima" class="img-fluid" style="max-height:60px;" onerror="this.style.display='none'">
           <h5 class="modal-title" id="forgotPasswordModalLabel">Lupa Password</h5>
         </div>
         <div class="modal-body">

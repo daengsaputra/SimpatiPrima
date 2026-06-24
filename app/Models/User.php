@@ -19,7 +19,7 @@ class User extends Authenticatable
 
     public const ROLE_LABELS = [
         self::ROLE_PEMINJAM => 'Pegawai',
-        self::ROLE_PETUGAS => 'Admin Sarpras',
+        self::ROLE_PETUGAS => 'Admin Sistem',
         self::ROLE_SUPER_ADMIN => 'Super Admin',
     ];
 

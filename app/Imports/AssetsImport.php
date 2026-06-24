@@ -36,7 +36,7 @@ class AssetsImport implements ToCollection, WithHeadingRow
 
             $category = (string)($row['category'] ?? $row['kategori'] ?? null);
             $description = (string)($row['description'] ?? $row['deskripsi'] ?? null);
-            $photo = trim((string) ($row['foto_sarpras'] ?? $row['photo'] ?? ''));
+            $photo = trim((string) ($row['foto_aset'] ?? $row['photo'] ?? ''));
             $bastDocument = trim((string) ($row['dokument_bast'] ?? $row['dokumen_bast'] ?? $row['bast_document'] ?? ''));
             $total = (int)($row['quantity_total'] ?? $row['jumlah_total'] ?? $row['stok'] ?? 0);
             $statusRaw = strtolower(trim((string)($row['status'] ?? 'active')));

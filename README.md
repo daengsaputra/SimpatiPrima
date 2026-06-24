@@ -1,6 +1,6 @@
 # SimpatiPrima
 
-Laravel 12 project for Simpati Prima / Sarpras Pusdatekin BPIP.
+Laravel 12 project for Simpati Prima.
 
 ## Jalankan di Laragon
 

@@ -1786,11 +1786,153 @@
             display: block !important;
         }
     }
+
+    /* ===== Mobile: Careem-style circular icon nav ===== */
+    @media (max-width: 720px) {
+        /* Flush below header: remove card margin, border-radius, and box-shadow */
+        .flow-sidebar {
+            position: relative !important;
+            width: 100% !important;
+            margin: 0 !important;
+            border-radius: 0 !important;
+            padding: 10px 8px 14px !important;
+            box-shadow: none !important;
+        }
+
+        /* Logo already visible in the header — hide duplicate in sidebar */
+        .ikpa-sidebar-logo {
+            display: none !important;
+        }
+
+        /* 4-column icon grid */
+        .flow-nav {
+            grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+            gap: 2px !important;
+            margin: 0 !important;
+        }
+
+        /* Flatten the logout <form> so the button is a direct grid child */
+        .flow-nav form {
+            display: contents !important;
+        }
+
+        /* Each nav item: single-column (icon stacked above label) */
+        .flow-nav a,
+        .flow-nav button,
+        .ikpa-theme-toggle {
+            min-height: auto !important;
+            grid-template-columns: 1fr !important;
+            justify-items: center !important;
+            align-items: center !important;
+            gap: 6px !important;
+            padding: 8px 2px !important;
+            padding-inline: 2px !important;
+            background: transparent !important;
+            border: 1px solid transparent !important;
+            border-radius: 12px !important;
+            box-shadow: none !important;
+            font-size: .69rem !important;
+            text-align: center !important;
+            line-height: 1.25 !important;
+            overflow: visible !important;
+            color: rgba(255, 255, 255, .7) !important;
+        }
+
+        /* Icon circle */
+        .flow-nav a i,
+        .flow-nav button i,
+        .ikpa-theme-toggle i {
+            width: 54px !important;
+            height: 54px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            border-radius: 50% !important;
+            border: 1.5px solid rgba(255, 255, 255, .28) !important;
+            font-size: 1.15rem !important;
+            background: transparent !important;
+            box-shadow: none !important;
+            transition: background .2s, border-color .2s !important;
+        }
+
+        /* Hover: subtle fill */
+        .flow-nav a:hover i,
+        .flow-nav button:hover i,
+        .ikpa-theme-toggle:hover i {
+            background: rgba(255, 255, 255, .1) !important;
+            border-color: rgba(255, 255, 255, .46) !important;
+        }
+
+        .flow-nav a:hover,
+        .flow-nav button:hover,
+        .ikpa-theme-toggle:hover {
+            color: #fff !important;
+            background: transparent !important;
+        }
+
+        /* Active: filled red circle, no background on item itself */
+        .flow-nav a.active {
+            background: transparent !important;
+            border-color: transparent !important;
+            box-shadow: none !important;
+            color: #fff !important;
+        }
+
+        .flow-nav a.active i {
+            background: linear-gradient(135deg, #ff161f, #f64b55) !important;
+            border-color: rgba(255, 22, 31, .45) !important;
+            box-shadow: 0 6px 16px rgba(245, 31, 43, .32) !important;
+        }
+
+        /* Hide collapsed-mode tooltip arrows on mobile */
+        body.ikpa-sidebar-collapsed .flow-nav a::after,
+        body.ikpa-sidebar-collapsed .flow-nav a::before,
+        body.ikpa-sidebar-collapsed .flow-nav button::after,
+        body.ikpa-sidebar-collapsed .flow-nav button::before {
+            display: none !important;
+        }
+
+        /* ── Light mode overrides ── */
+        body:not(.theme-dark) .flow-nav a,
+        body:not(.theme-dark) .flow-nav button,
+        body:not(.theme-dark) .ikpa-theme-toggle {
+            color: rgba(8, 42, 92, .68) !important;
+        }
+
+        body:not(.theme-dark) .flow-nav a i,
+        body:not(.theme-dark) .flow-nav button i,
+        body:not(.theme-dark) .ikpa-theme-toggle i {
+            border-color: rgba(8, 42, 92, .22) !important;
+        }
+
+        body:not(.theme-dark) .flow-nav a:hover,
+        body:not(.theme-dark) .flow-nav button:hover,
+        body:not(.theme-dark) .ikpa-theme-toggle:hover {
+            color: #082a5c !important;
+        }
+
+        body:not(.theme-dark) .flow-nav a:hover i,
+        body:not(.theme-dark) .flow-nav button:hover i,
+        body:not(.theme-dark) .ikpa-theme-toggle:hover i {
+            background: rgba(8, 42, 92, .07) !important;
+            border-color: rgba(8, 42, 92, .38) !important;
+        }
+
+        body:not(.theme-dark) .flow-nav a.active {
+            color: #082a5c !important;
+        }
+
+        body:not(.theme-dark) .flow-nav a.active i {
+            background: linear-gradient(135deg, #ff161f, #f64b55) !important;
+            border-color: rgba(255, 22, 31, .45) !important;
+            color: #fff !important;
+        }
+    }
 </style>
 <script>
     (function () {
-        const themeKey = 'sarpras-ikpa-theme';
-        const sidebarKey = 'sarpras-ikpa-sidebar';
+        const themeKey = 'simpati-prima-ikpa-theme';
+        const sidebarKey = 'simpati-prima-ikpa-sidebar';
         const getTheme = () => {
             try {
                 return localStorage.getItem(themeKey);

@@ -9,7 +9,7 @@ class AssetsTemplateExport implements FromArray, WithHeadings
 {
     public function headings(): array
     {
-        return ['code','name','category','description','kind','quantity_total','status','foto_sarpras','dokument_bast'];
+        return ['code','name','category','description','kind','quantity_total','status','foto_aset','dokument_bast'];
     }
 
     public function array(): array

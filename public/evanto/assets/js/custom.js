@@ -16,7 +16,7 @@ var Gymove = function(){
 
 	var handleThemeMode = function () {
 		if (jQuery(".dz-theme-mode").length > 0) {
-			var themeStorageKey = 'sarpras-theme';
+			var themeStorageKey = 'simpati-prima-theme';
 
 			var getStoredTheme = function () {
 				try {

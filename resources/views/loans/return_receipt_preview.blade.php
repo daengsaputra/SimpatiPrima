@@ -357,7 +357,7 @@
         <span class="receipt-badge">Dokumen Resmi</span>
         <h1>Bukti Pengembalian Barang</h1>
         <span>ID Peminjaman: <strong>{{ $loan->id }}</strong></span>
-        <small>SARPRAS PUSDATEKIN BPIP</small>
+        <small>SIMPATI PRIMA</small>
       </div>
     </div>
     <div class="receipt-preview__toolbar-actions">

@@ -614,17 +614,6 @@
     @media (max-width: 720px) {
         .flow-hero { padding: 24px 18px 18px; }
         .flow-body { padding: 18px 12px 0; }
-        .flow-nav { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-        .flow-nav a,
-        .flow-nav button {
-            min-height: 54px;
-            grid-template-columns: 1fr;
-            justify-items: center;
-            gap: 5px;
-            padding: 8px 6px;
-            font-size: .84rem;
-            text-align: center;
-        }
         .flow-logo { margin-bottom: 16px; }
         .flow-illustration,
         .flow-sidebar-copy { display: none; }
@@ -650,12 +639,11 @@
         <header class="flow-hero">
             @include('ikpa.partials.header')
         </header>
+        @include('ikpa.partials.sidebar', ['activeMenu' => 'ikpa'])
         @include('ikpa.partials.overview')
         @include('ikpa.partials.running-notice')
 
         <div class="flow-body">
-            @include('ikpa.partials.sidebar', ['activeMenu' => 'ikpa'])
-
             <div class="flow-main">
                 <section class="data-panel">
                     <div>

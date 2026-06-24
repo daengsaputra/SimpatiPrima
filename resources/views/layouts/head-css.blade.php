@@ -6,4 +6,4 @@
 <link class="main-switcher" href="{{ asset('evanto/assets/css/switcher.css') }}" rel="stylesheet">
 <link class="main-plugins" href="{{ asset('evanto/assets/css/plugins.css') }}" rel="stylesheet">
 <link class="main-css" href="{{ asset('evanto/assets/css/style.css') }}" rel="stylesheet">
-<link href="{{ asset('evanto/assets/css/sarpras-overrides.css') }}" rel="stylesheet">
+<link href="{{ asset('evanto/assets/css/simpati-prima-overrides.css') }}" rel="stylesheet">

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $title ?? 'SARPRAS PUSDATEKIN' }}</title>
+    <title>{{ $title ?? 'SIMPATI PRIMA' }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         :root {
@@ -397,7 +397,7 @@
 <body class="theme-dark" data-theme-version="dark" data-bs-theme="dark" data-hero-variant="{{ $heroVariant }}">
 <nav class="navbar landing-navbar navbar-expand-lg py-3">
     <div class="container">
-        <a class="navbar-brand fw-semibold text-uppercase" href="{{ url('/') }}">SARPRAS PUSDATEKIN</a>
+        <a class="navbar-brand fw-semibold text-uppercase" href="{{ url('/') }}">SIMPATI PRIMA</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#landingNav" aria-controls="landingNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -430,7 +430,7 @@
 </main>
 
 <footer class="text-center small py-4">
-    &copy; {{ now()->year }} SARPRAS PUSDATEKIN &ndash; Sarana Prasarana BPIP.
+    &copy; {{ now()->year }} SIMPATI PRIMA &ndash; Sarana Prasarana BPIP.
 </footer>
 
 <div class="modal fade modal-login" id="loginModalFallback" tabindex="-1" aria-labelledby="loginModalFallbackLabel" aria-hidden="true">
@@ -438,10 +438,10 @@
         <div class="modal-content">
             <div class="modal-header border-0 position-relative text-center py-0" style="flex-direction: column;">
                 <button type="button" class="btn-close position-absolute end-0 top-0" data-bs-dismiss="modal" aria-label="Close" style="margin: 1.5rem;"></button>
-                <img src="{{ asset('evanto/assets/images/Logo Baju Pusdatin.png') }}" alt="SARPRAS" class="img-fluid" style="max-height:60px;" onerror="this.style.display='none'">
+                <img src="{{ asset('evanto/assets/images/Logo Baju Pusdatin.png') }}" alt="Simpati Prima" class="img-fluid" style="max-height:60px;" onerror="this.style.display='none'">
                 <h5 class="modal-title" id="loginModalFallbackLabel">Masuk Dashboard</h5>
             </div>
-            <form method="POST" action="{{ route('login') }}" class="sarpras-login-form">
+            <form method="POST" action="{{ route('login') }}" class="simpati-prima-login-form">
                 <div class="modal-body">
                     @csrf
 
@@ -499,7 +499,7 @@
         <div class="modal-content">
             <div class="modal-header border-0 position-relative text-center py-0" style="flex-direction: column;">
                 <button type="button" class="btn-close position-absolute end-0 top-0" data-bs-dismiss="modal" aria-label="Close" style="margin: 1.5rem;"></button>
-                <img src="{{ asset('evanto/assets/images/Logo Baju Pusdatin.png') }}" alt="SARPRAS" class="img-fluid" style="max-height:60px;" onerror="this.style.display='none'">
+                <img src="{{ asset('evanto/assets/images/Logo Baju Pusdatin.png') }}" alt="Simpati Prima" class="img-fluid" style="max-height:60px;" onerror="this.style.display='none'">
                 <h5 class="modal-title" id="forgotPasswordModalFallbackLabel">Lupa Password</h5>
             </div>
             <div class="modal-body">
@@ -547,7 +547,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     (function () {
-        const THEME_KEY = 'sarpras-theme';
+        const THEME_KEY = 'simpati-prima-theme';
         const themeToggle = document.getElementById('landingThemeToggle');
 
         const setTheme = (theme) => {

@@ -1,5 +1,5 @@
 <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none" {{ $attributes }}>
-    <title>SARPRAS Logo</title>
+    <title>Simpati Prima Logo</title>
     <rect x="6" y="8" width="44" height="48" rx="10" stroke="currentColor" stroke-width="3"/>
     <path d="M14 24H42" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
     <path d="M14 34H42" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>

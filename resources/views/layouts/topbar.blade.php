@@ -1,6 +1,6 @@
 <div class="nav-header">
-    <a href="{{ route('dashboard') }}" class="brand-logo sarpras-brand-logo" aria-label="Simpati Prima">
-        <img src="{{ asset('images/simpati-prima-logo.png') }}" alt="Simpati Prima" class="sarpras-brand-logo__image">
+    <a href="{{ route('dashboard') }}" class="brand-logo simpati-prima-brand-logo" aria-label="Simpati Prima">
+        <img src="{{ asset('images/simpati-prima-logo.png') }}" alt="Simpati Prima" class="simpati-prima-brand-logo__image">
     </a>
 
     <div class="nav-control">
@@ -13,14 +13,14 @@
 <header class="header">
     <div class="header-content">
         <nav class="navbar navbar-expand">
-            <div class="collapse navbar-collapse justify-content-between sarpras-header-collapse">
-                <div class="header-left sarpras-header-left">
+            <div class="collapse navbar-collapse justify-content-between simpati-prima-header-collapse">
+                <div class="header-left simpati-prima-header-left">
                     <div class="dashboard_bar">{{ trim($__env->yieldContent('title', 'Dashboard')) }}</div>
                     @if(!empty($systemModeMeta))
                         <span class="badge bg-{{ $systemModeMeta['badge'] ?? 'secondary' }} ms-2">Mode: {{ $systemModeMeta['label'] ?? 'Unknown' }}</span>
                     @endif
                 </div>
-                <ul class="navbar-nav header-right sarpras-header-right">
+                <ul class="navbar-nav header-right simpati-prima-header-right">
                     <li class="nav-item">
                         @php
                             $isUsersPage = request()->is('users') || request()->is('users/*') || request()->routeIs('users.*');

@@ -51,8 +51,8 @@
         <div class="row g-3 mb-3 align-items-stretch">
             <div class="col-lg-8">
                 <div class="dashboard-welcome-card h-100">
-                    <div class="dashboard-welcome-title">Selamat Datang di Sarpras Pusdatekin</div>
-                    <div class="dashboard-welcome-sub">Halo, {{ auth()->user()->name ?? 'User' }}. Pantau ringkasan sarpras dari dashboard ini.</div>
+                    <div class="dashboard-welcome-title">Selamat Datang di Simpati Prima</div>
+                    <div class="dashboard-welcome-sub">Halo, {{ auth()->user()->name ?? 'User' }}. Pantau ringkasan peminjaman dan aset dari dashboard ini.</div>
                 </div>
             </div>
             <div class="col-lg-4">
@@ -152,7 +152,7 @@
                     <div class="card-header d-sm-flex justify-content-sm-between d-block pb-0 border-0">
                         <div class="pb-3 pb-sm-0">
                             <h4 class="card-title">Daftar Anggota</h4>
-                            <p class="fs-13 mb-0">Anggota terbaru sistem SARPRAS.</p>
+                            <p class="fs-13 mb-0">Anggota terbaru sistem Simpati Prima.</p>
                         </div>
                         <div class="mb-3 d-flex gap-2 flex-wrap">
                             <span class="badge light badge-primary">Total: {{ number_format($totalMembers, 0, ',', '.') }} akun</span>

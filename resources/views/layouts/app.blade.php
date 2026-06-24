@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', 'Dashboard') | {{ config('app.name', 'SARPRAS') }}</title>
+    <title>@yield('title', 'Dashboard') | {{ config('app.name', 'Simpati Prima') }}</title>
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('evanto/assets/images/favicon.avif') }}">
 
     @include('layouts.head-css')
@@ -59,7 +59,7 @@
     @stack('script')
     <script>
         (function () {
-            const THEME_KEY = 'sarpras-theme';
+            const THEME_KEY = 'simpati-prima-theme';
 
             const setCookie = (name, value) => {
                 document.cookie = `${name}=${value}; path=/`;

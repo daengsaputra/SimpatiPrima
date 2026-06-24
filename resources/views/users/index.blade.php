@@ -291,7 +291,7 @@
               <i class="fas fa-user-shield text-success"></i>
             </span>
             <div class="media-body">
-              <p class="fs-14 mb-2">Admin Sarpras</p>
+              <p class="fs-14 mb-2">Admin Sistem</p>
               <span class="title text-black font-w600">{{ number_format($petugasCount) }}</span>
             </div>
           </div>

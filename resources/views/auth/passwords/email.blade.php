@@ -9,7 +9,7 @@
             <div class="col-md-6">
                 <div class="card p-5 shadow-lg">
                     <div class="text-center mb-3">
-                        <a href="{{ route('root') }}" class="brand-logo" aria-label="SARPRAS">
+                        <a href="{{ route('root') }}" class="brand-logo" aria-label="Simpati Prima">
                             <img src="{{ asset('evanto/assets/images/Logo Baju Pusdatin.png') }}" alt="logo" class="img-fluid" style="max-height:60px;" onerror="this.style.display='none'">
                             
                         </a>

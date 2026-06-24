@@ -1,4 +1,4 @@
-﻿@php($context = $context ?? 'inventory')
+@php($context = $context ?? 'inventory')
 @php($isLoanable = $context === 'loanable')
 @php($title = $isLoanable ? 'Data Barang Peminjaman Peralatan' : 'Data Barang Aset')
 @php($listRoute = $isLoanable ? 'assets.loanable' : 'assets.index')
@@ -308,7 +308,7 @@
   <section class="asset-hero">
     <div>
       <div class="asset-hero__title">{{ $title }}</div>
-      <div class="asset-hero__subtitle">Kelola data sarpras dengan filter cepat, ekspor-impor Excel, serta aksi edit langsung di tabel.</div>
+      <div class="asset-hero__subtitle">Kelola data aset dengan filter cepat, ekspor-impor Excel, serta aksi edit langsung di tabel.</div>
       @auth
         <div class="asset-hero__cta">
           <a href="{{ $createUrl }}" class="btn asset-add-btn px-4 d-flex align-items-center gap-2">
@@ -387,23 +387,23 @@
             @php($next=function($key){ return (request('sort')===$key && request('dir','asc')==='asc')?'desc':'asc'; })
             <th>
               @php($q=array_merge(request()->all(),['sort'=>'code','dir'=>$next('code')]))
-              @php($arrow=$s==='code' ? ($d==='asc'?'▲':'▼') : '•')
+              @php($arrow=$s==='code' ? ($d==='asc'?'?':'?') : '�')
               <a href="{{ route($listRoute,$q) }}" class="text-decoration-none text-muted">Kode <span class="small">{{ $arrow }}</span></a>
             </th>
             <th>
               @php($q=array_merge(request()->all(),['sort'=>'name','dir'=>$next('name')]))
-              @php($arrow=$s==='name' ? ($d==='asc'?'▲':'▼') : '•')
+              @php($arrow=$s==='name' ? ($d==='asc'?'?':'?') : '�')
               <a href="{{ route($listRoute,$q) }}" class="text-decoration-none text-muted">Nama <span class="small">{{ $arrow }}</span></a>
             </th>
             <th>
               @php($q=array_merge(request()->all(),['sort'=>'category','dir'=>$next('category')]))
-              @php($arrow=$s==='category' ? ($d==='asc'?'▲':'▼') : '•')
+              @php($arrow=$s==='category' ? ($d==='asc'?'?':'?') : '�')
               <a href="{{ route($listRoute,$q) }}" class="text-decoration-none text-muted">Kategori <span class="small">{{ $arrow }}</span></a>
             </th>
             <th></th>
             <th>
               @php($q=array_merge(request()->all(),['sort'=>'status','dir'=>$next('status')]))
-              @php($arrow=$s==='status' ? ($d==='asc'?'▲':'▼') : '•')
+              @php($arrow=$s==='status' ? ($d==='asc'?'?':'?') : '�')
               <a href="{{ route($listRoute,$q) }}" class="text-decoration-none text-muted">Status <span class="small">{{ $arrow }}</span></a>
             </th>
             @if($isAuthenticated)

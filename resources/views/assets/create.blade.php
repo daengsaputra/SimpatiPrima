@@ -70,7 +70,7 @@
   <input type="hidden" name="quantity_total" value="1">
 
   <div class="asset-form-card">
-    <h2>Identitas Sarpras</h2>
+    <h2>Identitas Aset</h2>
     <div class="asset-grid">
       <div>
         <label class="form-label">Kode</label>
@@ -112,7 +112,7 @@
     <h2>Bukti & Dokumentasi</h2>
     <div class="asset-grid">
       <div>
-        <label class="form-label">Foto Sarpras</label>
+        <label class="form-label">Foto Aset</label>
         <input type="file" name="photo" id="photoInput" accept="image/*" class="form-control @error('photo') is-invalid @enderror" required>
         @error('photo')<div class="invalid-feedback">{{ $message }}</div>@enderror
         <input type="text" id="photoFileName" class="form-control mt-2" value="Belum ada file dipilih" readonly>

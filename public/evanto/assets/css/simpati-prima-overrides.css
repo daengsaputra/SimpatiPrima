@@ -1,10 +1,10 @@
-/* SARPRAS precision override for Gymove layout */
+/* Simpati Prima precision override for Gymove layout */
 :root {
-    --sarpras-content-x: 1.5rem;
-    --sarpras-content-y: 1.5rem;
-    --sarpras-font-family: Arial, sans-serif;
-    --sarpras-font-size: 14.5px;
-    --sarpras-line-height: 1.55;
+    --simpati-prima-content-x: 1.5rem;
+    --simpati-prima-content-y: 1.5rem;
+    --simpati-prima-font-family: Arial, sans-serif;
+    --simpati-prima-font-size: 14.5px;
+    --simpati-prima-line-height: 1.55;
 }
 
 html,
@@ -18,18 +18,18 @@ input, textarea, select, button,
 .table, .table th, .table td,
 .navbar, .nav-link, .dropdown-item,
 .card, .card-title, .card-body {
-    font-family: var(--sarpras-font-family) !important;
+    font-family: var(--simpati-prima-font-family) !important;
 }
 
 html {
-    font-size: var(--sarpras-font-size);
+    font-size: var(--simpati-prima-font-size);
 }
 
 body,
 .app-main,
 #main-wrapper {
     font-size: 1rem;
-    line-height: var(--sarpras-line-height);
+    line-height: var(--simpati-prima-line-height);
 }
 
 .content-body {
@@ -66,17 +66,17 @@ body,
 
 @media (min-width: 992px) {
     :root {
-        --sarpras-content-x: 1.875rem;
-        --sarpras-content-y: 1.75rem;
+        --simpati-prima-content-x: 1.875rem;
+        --simpati-prima-content-y: 1.75rem;
     }
 }
 
 /* Keep content container spacing consistent across all menu pages */
 .content-body > .container-fluid {
-    padding-left: var(--sarpras-content-x);
-    padding-right: var(--sarpras-content-x);
-    padding-top: var(--sarpras-content-y);
-    padding-bottom: var(--sarpras-content-y);
+    padding-left: var(--simpati-prima-content-x);
+    padding-right: var(--simpati-prima-content-x);
+    padding-top: var(--simpati-prima-content-y);
+    padding-bottom: var(--simpati-prima-content-y);
 }
 
 /* Fallback when a page nests container-fluid deeper */
@@ -89,13 +89,13 @@ body,
     --dz-header-height: 3.5rem;
 }
 
-.nav-header .brand-logo.sarpras-brand-logo {
+.nav-header .brand-logo.simpati-prima-brand-logo {
     justify-content: flex-start;
     padding-left: 1rem;
     padding-right: 0.75rem;
 }
 
-.sarpras-brand-logo__image {
+.simpati-prima-brand-logo__image {
     display: block;
     width: min(13.5rem, 100%);
     max-height: 3rem;
@@ -104,23 +104,23 @@ body,
 }
 
 @media (min-width: 992px) {
-    #main-wrapper:not(.menu-toggle) .sarpras-brand-logo__image {
+    #main-wrapper:not(.menu-toggle) .simpati-prima-brand-logo__image {
         width: min(15.75rem, 100%);
     }
 
-    #main-wrapper.menu-toggle .nav-header .brand-logo.sarpras-brand-logo {
+    #main-wrapper.menu-toggle .nav-header .brand-logo.simpati-prima-brand-logo {
         justify-content: center;
         padding-left: 0.5rem;
         padding-right: 0.5rem;
     }
 
-    #main-wrapper.menu-toggle .sarpras-brand-logo__image {
+    #main-wrapper.menu-toggle .simpati-prima-brand-logo__image {
         max-width: 3.2rem;
         max-height: 2.5rem;
     }
 }
 
-.sarpras-sidebar-logo {
+.simpati-prima-sidebar-logo {
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -128,7 +128,7 @@ body,
     margin-bottom: 0.25rem;
 }
 
-.sarpras-sidebar-logo img {
+.simpati-prima-sidebar-logo img {
     display: block;
     width: min(15.25rem, 100%);
     max-height: 5.25rem;
@@ -137,12 +137,12 @@ body,
 }
 
 @media (min-width: 992px) {
-    #main-wrapper.menu-toggle .sarpras-sidebar-logo {
+    #main-wrapper.menu-toggle .simpati-prima-sidebar-logo {
         justify-content: center;
         padding: 0.8rem 0.4rem 0.6rem;
     }
 
-    #main-wrapper.menu-toggle .sarpras-sidebar-logo img {
+    #main-wrapper.menu-toggle .simpati-prima-sidebar-logo img {
         max-width: 3.3rem;
         max-height: 2.5rem;
         object-position: center;
@@ -150,12 +150,12 @@ body,
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
-    body[data-sidebar-style="mini"] .sarpras-sidebar-logo {
+    body[data-sidebar-style="mini"] .simpati-prima-sidebar-logo {
         justify-content: center;
         padding: 0.75rem 0.35rem 0.55rem;
     }
 
-    body[data-sidebar-style="mini"] .sarpras-sidebar-logo img {
+    body[data-sidebar-style="mini"] .simpati-prima-sidebar-logo img {
         max-width: 3.2rem;
         max-height: 2.4rem;
         object-position: center;
@@ -166,7 +166,7 @@ body,
 .header .header-content {
     /* Reserve space for hamburger/nav-control so page title does not overlap it */
     padding-left: 4rem;
-    padding-right: var(--sarpras-content-x);
+    padding-right: var(--simpati-prima-content-x);
 }
 
 @media (max-width: 767px) {
@@ -175,22 +175,22 @@ body,
     }
 }
 
-.sarpras-header-collapse {
+.simpati-prima-header-collapse {
     min-height: 3.5rem;
     align-items: center;
 }
 
-.sarpras-header-left {
+.simpati-prima-header-left {
     min-width: 220px;
     padding-right: 1rem;
 }
 
-.sarpras-header-right {
+.simpati-prima-header-right {
     align-items: center;
     gap: 0.35rem;
 }
 
-.sarpras-header-right .nav-link {
+.simpati-prima-header-right .nav-link {
     display: inline-flex;
     align-items: center;
 }
@@ -237,10 +237,10 @@ body,
 }
 
 #preloader + #main-wrapper .content-body {
-    animation: sarprasContentIn 0.26s ease;
+    animation: simpati-primaContentIn 0.26s ease;
 }
 
-@keyframes sarprasContentIn {
+@keyframes simpati-primaContentIn {
     from {
         opacity: 0;
         transform: translateY(4px);
@@ -258,8 +258,8 @@ body,
     }
 }
 
-/* Sidebar menu order/style like initial SARPRAS */
-.sarpras-menu-title {
+/* Sidebar menu order/style like initial Simpati Prima */
+.simpati-prima-menu-title {
     font-size: 0.68rem;
     letter-spacing: 0.18em;
     color: #8a8fa1 !important;
@@ -268,7 +268,7 @@ body,
     margin-bottom: 0.5rem;
 }
 
-.sarpras-menu-list > li > .sarpras-menu-link {
+.simpati-prima-menu-list > li > .simpati-prima-menu-link {
     display: grid !important;
     grid-template-columns: 18px minmax(0, 1fr) 14px;
     align-items: center;
@@ -283,11 +283,11 @@ body,
     border: 1px solid transparent;
 }
 
-.sarpras-menu-list > li > .sarpras-menu-link > i {
+.simpati-prima-menu-list > li > .simpati-prima-menu-link > i {
     margin-right: 0 !important;
 }
 
-.sarpras-menu-list > li > .sarpras-menu-link i:first-child {
+.simpati-prima-menu-list > li > .simpati-prima-menu-link i:first-child {
     font-size: 0.82rem;
     width: 18px;
     text-align: center;
@@ -311,7 +311,7 @@ body,
         padding-left: 19.25rem;
     }
 
-    #main-wrapper.menu-toggle .sarpras-menu-title {
+    #main-wrapper.menu-toggle .simpati-prima-menu-title {
         opacity: 0;
         visibility: hidden;
         height: 0;
@@ -328,11 +328,11 @@ body,
         opacity: 0 !important;
     }
 
-    #main-wrapper.menu-toggle .sarpras-menu-list > li {
+    #main-wrapper.menu-toggle .simpati-prima-menu-list > li {
         position: relative;
     }
 
-    #main-wrapper.menu-toggle .sarpras-menu-list > li > .sarpras-menu-link::after {
+    #main-wrapper.menu-toggle .simpati-prima-menu-list > li > .simpati-prima-menu-link::after {
         content: attr(data-menu-label);
         position: absolute;
         left: calc(100% + 0.65rem);
@@ -355,7 +355,7 @@ body,
         z-index: 1001;
     }
 
-    #main-wrapper.menu-toggle .sarpras-menu-list > li > .sarpras-menu-link::before {
+    #main-wrapper.menu-toggle .simpati-prima-menu-list > li > .simpati-prima-menu-link::before {
         content: "";
         position: absolute;
         left: calc(100% + 0.38rem);
@@ -373,20 +373,20 @@ body,
         z-index: 1000;
     }
 
-    #main-wrapper.menu-toggle .sarpras-menu-list > li > .sarpras-menu-link:hover::after,
-    #main-wrapper.menu-toggle .sarpras-menu-list > li > .sarpras-menu-link:focus-visible::after,
-    #main-wrapper.menu-toggle .sarpras-menu-list > li > .sarpras-menu-link:hover::before,
-    #main-wrapper.menu-toggle .sarpras-menu-list > li > .sarpras-menu-link:focus-visible::before {
+    #main-wrapper.menu-toggle .simpati-prima-menu-list > li > .simpati-prima-menu-link:hover::after,
+    #main-wrapper.menu-toggle .simpati-prima-menu-list > li > .simpati-prima-menu-link:focus-visible::after,
+    #main-wrapper.menu-toggle .simpati-prima-menu-list > li > .simpati-prima-menu-link:hover::before,
+    #main-wrapper.menu-toggle .simpati-prima-menu-list > li > .simpati-prima-menu-link:focus-visible::before {
         opacity: 1;
         visibility: visible;
     }
 
-    #main-wrapper.menu-toggle .sarpras-menu-arrow {
+    #main-wrapper.menu-toggle .simpati-prima-menu-arrow {
         display: none !important;
     }
 }
 
-.sarpras-menu-list > li > .sarpras-menu-link .nav-text {
+.simpati-prima-menu-list > li > .simpati-prima-menu-link .nav-text {
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
@@ -398,7 +398,7 @@ body,
     overflow: hidden;
 }
 
-.sarpras-menu-label {
+.simpati-prima-menu-label {
     min-width: 0;
     flex: 1 1 0;
     font-size: clamp(0.78rem, 0.18vw + 0.72rem, 0.9rem);
@@ -408,7 +408,7 @@ body,
     text-overflow: ellipsis;
 }
 
-.sarpras-menu-state {
+.simpati-prima-menu-state {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -424,7 +424,7 @@ body,
     flex: 0 0 auto;
 }
 
-.sarpras-menu-arrow {
+.simpati-prima-menu-arrow {
     margin-left: 0 !important;
     width: 14px;
     display: inline-flex;
@@ -436,21 +436,21 @@ body,
     color: #8a8fa1;
 }
 
-.sarpras-menu-list > li.mm-active > .sarpras-menu-link,
-.sarpras-menu-list > li > .sarpras-menu-link.active,
-.sarpras-menu-list > li > .sarpras-menu-link:hover {
+.simpati-prima-menu-list > li.mm-active > .simpati-prima-menu-link,
+.simpati-prima-menu-list > li > .simpati-prima-menu-link.active,
+.simpati-prima-menu-list > li > .simpati-prima-menu-link:hover {
     background: #eef0ff;
     color: #49a4e8;
     box-shadow: 0 10px 24px rgba(79, 102, 193, 0.12);
 }
 
-.sarpras-menu-list > li.mm-active > .sarpras-menu-link .sarpras-menu-arrow,
-.sarpras-menu-list > li > .sarpras-menu-link.active .sarpras-menu-arrow,
-.sarpras-menu-list > li > .sarpras-menu-link:hover .sarpras-menu-arrow {
+.simpati-prima-menu-list > li.mm-active > .simpati-prima-menu-link .simpati-prima-menu-arrow,
+.simpati-prima-menu-list > li > .simpati-prima-menu-link.active .simpati-prima-menu-arrow,
+.simpati-prima-menu-list > li > .simpati-prima-menu-link:hover .simpati-prima-menu-arrow {
     color: #49a4e8;
 }
 
-.sarpras-logout-btn {
+.simpati-prima-logout-btn {
     border: 1px solid #f0b2b2;
     border-radius: 14px;
     color: #e06b6b;
@@ -459,68 +459,68 @@ body,
     padding: 0.75rem 1rem;
 }
 
-.sarpras-logout-btn:hover {
+.simpati-prima-logout-btn:hover {
     color: #fff;
     background: #e06b6b;
     border-color: #e06b6b;
 }
 
 /* Sidebar contrast tuning for dark mode */
-body[data-theme="dark"] .sarpras-menu-title,
-body[data-theme-version="dark"] .sarpras-menu-title {
+body[data-theme="dark"] .simpati-prima-menu-title,
+body[data-theme-version="dark"] .simpati-prima-menu-title {
     color: #94a3b8 !important;
 }
 
-body[data-theme="dark"] .sarpras-menu-list > li > .sarpras-menu-link,
-body[data-theme-version="dark"] .sarpras-menu-list > li > .sarpras-menu-link {
+body[data-theme="dark"] .simpati-prima-menu-list > li > .simpati-prima-menu-link,
+body[data-theme-version="dark"] .simpati-prima-menu-list > li > .simpati-prima-menu-link {
     color: #e2e8f0 !important;
     border-color: transparent !important;
     background: transparent !important;
 }
 
-body[data-theme="dark"] .sarpras-menu-list > li > .sarpras-menu-link i:first-child,
-body[data-theme-version="dark"] .sarpras-menu-list > li > .sarpras-menu-link i:first-child,
-body[data-theme="dark"] .sarpras-menu-arrow,
-body[data-theme-version="dark"] .sarpras-menu-arrow {
+body[data-theme="dark"] .simpati-prima-menu-list > li > .simpati-prima-menu-link i:first-child,
+body[data-theme-version="dark"] .simpati-prima-menu-list > li > .simpati-prima-menu-link i:first-child,
+body[data-theme="dark"] .simpati-prima-menu-arrow,
+body[data-theme-version="dark"] .simpati-prima-menu-arrow {
     color: #94a3b8 !important;
 }
 
-body[data-theme="dark"] .sarpras-menu-list > li.mm-active > .sarpras-menu-link,
-body[data-theme-version="dark"] .sarpras-menu-list > li.mm-active > .sarpras-menu-link,
-body[data-theme="dark"] .sarpras-menu-list > li > .sarpras-menu-link.active,
-body[data-theme-version="dark"] .sarpras-menu-list > li > .sarpras-menu-link.active,
-body[data-theme="dark"] .sarpras-menu-list > li > .sarpras-menu-link:hover,
-body[data-theme-version="dark"] .sarpras-menu-list > li > .sarpras-menu-link:hover {
+body[data-theme="dark"] .simpati-prima-menu-list > li.mm-active > .simpati-prima-menu-link,
+body[data-theme-version="dark"] .simpati-prima-menu-list > li.mm-active > .simpati-prima-menu-link,
+body[data-theme="dark"] .simpati-prima-menu-list > li > .simpati-prima-menu-link.active,
+body[data-theme-version="dark"] .simpati-prima-menu-list > li > .simpati-prima-menu-link.active,
+body[data-theme="dark"] .simpati-prima-menu-list > li > .simpati-prima-menu-link:hover,
+body[data-theme-version="dark"] .simpati-prima-menu-list > li > .simpati-prima-menu-link:hover {
     background: rgba(96, 165, 250, 0.18) !important;
     color: #f8fafc !important;
     border-color: rgba(96, 165, 250, 0.42) !important;
     box-shadow: 0 10px 22px rgba(2, 6, 23, 0.45) !important;
 }
 
-body[data-theme="dark"] .sarpras-menu-list > li.mm-active > .sarpras-menu-link i:first-child,
-body[data-theme-version="dark"] .sarpras-menu-list > li.mm-active > .sarpras-menu-link i:first-child,
-body[data-theme="dark"] .sarpras-menu-list > li > .sarpras-menu-link.active i:first-child,
-body[data-theme-version="dark"] .sarpras-menu-list > li > .sarpras-menu-link.active i:first-child,
-body[data-theme="dark"] .sarpras-menu-list > li > .sarpras-menu-link:hover i:first-child,
-body[data-theme-version="dark"] .sarpras-menu-list > li > .sarpras-menu-link:hover i:first-child,
-body[data-theme="dark"] .sarpras-menu-list > li.mm-active > .sarpras-menu-link .sarpras-menu-arrow,
-body[data-theme-version="dark"] .sarpras-menu-list > li.mm-active > .sarpras-menu-link .sarpras-menu-arrow,
-body[data-theme="dark"] .sarpras-menu-list > li > .sarpras-menu-link.active .sarpras-menu-arrow,
-body[data-theme-version="dark"] .sarpras-menu-list > li > .sarpras-menu-link.active .sarpras-menu-arrow,
-body[data-theme="dark"] .sarpras-menu-list > li > .sarpras-menu-link:hover .sarpras-menu-arrow,
-body[data-theme-version="dark"] .sarpras-menu-list > li > .sarpras-menu-link:hover .sarpras-menu-arrow {
+body[data-theme="dark"] .simpati-prima-menu-list > li.mm-active > .simpati-prima-menu-link i:first-child,
+body[data-theme-version="dark"] .simpati-prima-menu-list > li.mm-active > .simpati-prima-menu-link i:first-child,
+body[data-theme="dark"] .simpati-prima-menu-list > li > .simpati-prima-menu-link.active i:first-child,
+body[data-theme-version="dark"] .simpati-prima-menu-list > li > .simpati-prima-menu-link.active i:first-child,
+body[data-theme="dark"] .simpati-prima-menu-list > li > .simpati-prima-menu-link:hover i:first-child,
+body[data-theme-version="dark"] .simpati-prima-menu-list > li > .simpati-prima-menu-link:hover i:first-child,
+body[data-theme="dark"] .simpati-prima-menu-list > li.mm-active > .simpati-prima-menu-link .simpati-prima-menu-arrow,
+body[data-theme-version="dark"] .simpati-prima-menu-list > li.mm-active > .simpati-prima-menu-link .simpati-prima-menu-arrow,
+body[data-theme="dark"] .simpati-prima-menu-list > li > .simpati-prima-menu-link.active .simpati-prima-menu-arrow,
+body[data-theme-version="dark"] .simpati-prima-menu-list > li > .simpati-prima-menu-link.active .simpati-prima-menu-arrow,
+body[data-theme="dark"] .simpati-prima-menu-list > li > .simpati-prima-menu-link:hover .simpati-prima-menu-arrow,
+body[data-theme-version="dark"] .simpati-prima-menu-list > li > .simpati-prima-menu-link:hover .simpati-prima-menu-arrow {
     color: #93c5fd !important;
 }
 
-body[data-theme="dark"] .sarpras-logout-btn,
-body[data-theme-version="dark"] .sarpras-logout-btn {
+body[data-theme="dark"] .simpati-prima-logout-btn,
+body[data-theme-version="dark"] .simpati-prima-logout-btn {
     background: rgba(15, 23, 42, 0.9) !important;
     border-color: rgba(248, 113, 113, 0.5) !important;
     color: #fca5a5 !important;
 }
 
-body[data-theme="dark"] .sarpras-logout-btn:hover,
-body[data-theme-version="dark"] .sarpras-logout-btn:hover {
+body[data-theme="dark"] .simpati-prima-logout-btn:hover,
+body[data-theme-version="dark"] .simpati-prima-logout-btn:hover {
     background: #ef4444 !important;
     border-color: #ef4444 !important;
     color: #ffffff !important;
@@ -545,32 +545,32 @@ body[data-theme-version="dark"] .sarpras-logout-btn:hover {
         padding-left: 16.75rem;
     }
 
-    .sarpras-menu-list > li > .sarpras-menu-link {
+    .simpati-prima-menu-list > li > .simpati-prima-menu-link {
         padding: 0.58rem 0.65rem;
         margin: 0.12rem 0.45rem;
         gap: 0.44rem;
         font-size: 0.7rem;
     }
 
-    .sarpras-menu-label {
+    .simpati-prima-menu-label {
         font-size: clamp(0.74rem, 0.2vw + 0.66rem, 0.84rem);
     }
 
-    .sarpras-menu-state {
+    .simpati-prima-menu-state {
         font-size: 0.56rem;
         padding: 0.09rem 0.3rem;
     }
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
-    body[data-sidebar-style="mini"] .sarpras-menu-title,
-    body[data-sidebar-style="mini"] .sarpras-menu-arrow,
-    body[data-sidebar-style="mini"] .sarpras-menu-link .nav-text,
+    body[data-sidebar-style="mini"] .simpati-prima-menu-title,
+    body[data-sidebar-style="mini"] .simpati-prima-menu-arrow,
+    body[data-sidebar-style="mini"] .simpati-prima-menu-link .nav-text,
     body[data-sidebar-style="mini"] .deznav-footer {
         display: none !important;
     }
 
-    body[data-sidebar-style="mini"] .sarpras-menu-list > li > .sarpras-menu-link {
+    body[data-sidebar-style="mini"] .simpati-prima-menu-list > li > .simpati-prima-menu-link {
         position: relative;
         grid-template-columns: 1fr;
         justify-items: center;
@@ -580,12 +580,12 @@ body[data-theme-version="dark"] .sarpras-logout-btn:hover {
         gap: 0;
     }
 
-    body[data-sidebar-style="mini"] .sarpras-menu-list > li > .sarpras-menu-link i:first-child {
+    body[data-sidebar-style="mini"] .simpati-prima-menu-list > li > .simpati-prima-menu-link i:first-child {
         font-size: 1rem;
         width: auto;
     }
 
-    body[data-sidebar-style="mini"] .sarpras-menu-list > li > .sarpras-menu-link::after {
+    body[data-sidebar-style="mini"] .simpati-prima-menu-list > li > .simpati-prima-menu-link::after {
         content: attr(data-menu-label);
         position: absolute;
         left: calc(100% + 0.6rem);
@@ -607,8 +607,8 @@ body[data-theme-version="dark"] .sarpras-logout-btn:hover {
         z-index: 1001;
     }
 
-    body[data-sidebar-style="mini"] .sarpras-menu-list > li > .sarpras-menu-link:hover::after,
-    body[data-sidebar-style="mini"] .sarpras-menu-list > li > .sarpras-menu-link:focus-visible::after {
+    body[data-sidebar-style="mini"] .simpati-prima-menu-list > li > .simpati-prima-menu-link:hover::after,
+    body[data-sidebar-style="mini"] .simpati-prima-menu-list > li > .simpati-prima-menu-link:focus-visible::after {
         opacity: 1;
         visibility: visible;
     }
@@ -1048,4 +1048,275 @@ body[data-theme="dark"][data-hero-variant="slate"] .content-body .landing-settin
 body[data-theme-version="dark"][data-hero-variant="slate"] .content-body .landing-settings-hero {
     background: linear-gradient(122deg, rgba(71, 85, 105, 0.42), rgba(15, 23, 42, 0.95) 62%) !important;
     border-color: rgba(148, 163, 184, 0.35) !important;
+}
+
+/* ===== SP Mobile Bottom Sheet Navigation ===== */
+
+/* Backdrop */
+.sp-mobile-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.52);
+    z-index: 9998;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.sp-mobile-backdrop.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+/* Sheet panel */
+.sp-mobile-sheet {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    background: #ffffff;
+    border-radius: 1.25rem 1.25rem 0 0;
+    padding: 0 1.25rem env(safe-area-inset-bottom, 1.25rem);
+    transform: translateY(100%);
+    visibility: hidden;
+    transition: transform 0.36s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.36s;
+    max-height: 82vh;
+    overflow-y: auto;
+    box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.14);
+}
+
+.sp-mobile-sheet.is-open {
+    transform: translateY(0);
+    visibility: visible;
+}
+
+/* Prevent body scroll while sheet is open */
+body.sp-mobile-nav-open {
+    overflow: hidden;
+}
+
+/* Only render on mobile — hidden entirely on desktop */
+@media (min-width: 992px) {
+    .sp-mobile-backdrop,
+    .sp-mobile-sheet {
+        display: none !important;
+    }
+}
+
+/* Drag handle */
+.sp-mobile-sheet__handle {
+    width: 2.5rem;
+    height: 0.25rem;
+    background: #d1d5db;
+    border-radius: 9999px;
+    margin: 0.7rem auto 0;
+}
+
+/* Header row: logo + close button */
+.sp-mobile-sheet__header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 1rem 0 1.25rem;
+}
+
+.sp-mobile-sheet__logo {
+    max-height: 2rem;
+    max-width: 60%;
+    object-fit: contain;
+}
+
+.sp-mobile-sheet__close {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    border: 1.5px solid #e5e7eb;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: #6b7280;
+    padding: 0;
+    line-height: 1;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.sp-mobile-sheet__close:hover,
+.sp-mobile-sheet__close:focus-visible {
+    background: #f3f4f6;
+    color: #111827;
+    border-color: #d1d5db;
+    outline: none;
+}
+
+/* Nav grid */
+.sp-mobile-sheet__nav {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem 0.25rem;
+    padding-bottom: 0.5rem;
+}
+
+/* Individual nav item */
+.sp-mobile-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.5rem 0.2rem;
+    text-decoration: none !important;
+    color: #374151;
+    border-radius: 0.75rem;
+    transition: background 0.2s, color 0.2s;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.sp-mobile-nav-item:hover,
+.sp-mobile-nav-item:focus-visible {
+    background: #eff6ff;
+    color: #2563eb;
+    text-decoration: none;
+    outline: none;
+}
+
+/* Icon circle */
+.sp-mobile-nav-icon {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    border: 1.5px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    color: inherit;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+    flex-shrink: 0;
+}
+
+/* Label */
+.sp-mobile-nav-label {
+    font-size: 0.68rem;
+    font-weight: 500;
+    text-align: center;
+    line-height: 1.25;
+    color: inherit;
+}
+
+/* Active state */
+.sp-mobile-nav-item.is-active .sp-mobile-nav-icon {
+    background: #2563eb;
+    border-color: #2563eb;
+    color: #ffffff;
+}
+
+.sp-mobile-nav-item.is-active {
+    color: #2563eb;
+}
+
+/* Logout item */
+.sp-mobile-nav-item--logout .sp-mobile-nav-icon {
+    border-color: #fca5a5;
+    color: #ef4444;
+}
+
+.sp-mobile-nav-item--logout {
+    color: #ef4444;
+}
+
+.sp-mobile-nav-item--logout:hover .sp-mobile-nav-icon {
+    background: #fef2f2;
+    border-color: #ef4444;
+}
+
+/* iOS-style home indicator bar */
+.sp-mobile-sheet__home-bar {
+    width: 8rem;
+    height: 0.3rem;
+    background: #111827;
+    border-radius: 9999px;
+    margin: 1.25rem auto 0.5rem;
+    opacity: 0.12;
+}
+
+/* Very small screens: tighter icons */
+@media (max-width: 360px) {
+    .sp-mobile-nav-icon {
+        width: 2.6rem;
+        height: 2.6rem;
+        font-size: 0.95rem;
+    }
+
+    .sp-mobile-sheet__nav {
+        gap: 0.5rem 0.15rem;
+    }
+}
+
+/* ── Dark mode ─────────────────────────────────────────── */
+body[data-theme-version="dark"] .sp-mobile-sheet,
+body[data-bs-theme="dark"] .sp-mobile-sheet {
+    background: #1a1f37;
+    color: #e2e8f0;
+}
+
+body[data-theme-version="dark"] .sp-mobile-sheet__handle,
+body[data-bs-theme="dark"] .sp-mobile-sheet__handle {
+    background: #334155;
+}
+
+body[data-theme-version="dark"] .sp-mobile-sheet__close,
+body[data-bs-theme="dark"] .sp-mobile-sheet__close {
+    border-color: #334155;
+    color: #94a3b8;
+}
+
+body[data-theme-version="dark"] .sp-mobile-sheet__close:hover,
+body[data-bs-theme="dark"] .sp-mobile-sheet__close:hover {
+    background: #334155;
+    color: #f1f5f9;
+}
+
+body[data-theme-version="dark"] .sp-mobile-nav-item,
+body[data-bs-theme="dark"] .sp-mobile-nav-item {
+    color: #cbd5e1;
+}
+
+body[data-theme-version="dark"] .sp-mobile-nav-icon,
+body[data-bs-theme="dark"] .sp-mobile-nav-icon {
+    border-color: #334155;
+    color: inherit;
+}
+
+body[data-theme-version="dark"] .sp-mobile-nav-item:hover,
+body[data-bs-theme="dark"] .sp-mobile-nav-item:hover {
+    background: #1e3a5f;
+    color: #93c5fd;
+}
+
+body[data-theme-version="dark"] .sp-mobile-nav-item.is-active,
+body[data-bs-theme="dark"] .sp-mobile-nav-item.is-active {
+    color: #93c5fd;
+}
+
+body[data-theme-version="dark"] .sp-mobile-nav-item.is-active .sp-mobile-nav-icon,
+body[data-bs-theme="dark"] .sp-mobile-nav-item.is-active .sp-mobile-nav-icon {
+    background: #2563eb;
+    border-color: #2563eb;
+    color: #ffffff;
+}
+
+body[data-theme-version="dark"] .sp-mobile-sheet__home-bar,
+body[data-bs-theme="dark"] .sp-mobile-sheet__home-bar {
+    background: #f8fafc;
+    opacity: 0.18;
 }
